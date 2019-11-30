@@ -3,6 +3,7 @@ package com.example.demo.action;
 import com.example.demo.domain.Data;
 import com.example.demo.domain.MonthBill;
 import com.example.demo.tools.HttpTools;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,13 +12,14 @@ import java.util.List;
 
 @RestController
 public class MonthBillAction {
+
+    @Value("${token}")
+    public String token;
+
     @RequestMapping("/putMonthBill")
     public String putMonthBill() {
         String url = "http://211.160.73.240:19018/gffp/pv/data/push";
         // String url = "http://127.0.0.1:8000/test";
-
-        // TOKEN由单独方法获取
-        String token = "718f04ced8f5925f2963b022697e11e7";
 
         MonthBill monthBill = new MonthBill();
         monthBill.PAY_INFO_ID = 100L;

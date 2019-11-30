@@ -3,6 +3,7 @@ package com.example.demo.action;
 import com.example.demo.domain.Addr;
 import com.example.demo.domain.Data;
 import com.example.demo.tools.HttpTools;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,10 @@ import java.util.List;
 
 @RestController
 public class AddrAction {
+
+    @Value("${token}")
+    public String token;
+
     @RequestMapping("/putAddr")
     public String putAddr() {
         String url = "http://211.160.73.240:19018/gffp/pv/data/addrmsg";
