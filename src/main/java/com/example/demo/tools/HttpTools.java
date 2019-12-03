@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Date;
 import java.util.HashMap;
 
 public class HttpTools {
@@ -47,7 +46,7 @@ public class HttpTools {
             json = JSONObject.toJSONString(base);
             System.out.print(json);
         } else {
-            String encryptDataStr = DESUtils.encrypt(JSONObject.toJSONString(data), secretKey);
+            String encryptDataStr = DESUtils.encrypt(JSONObject.toJSONString(data[0]), secretKey);
             String decryptDateStr = DESUtils.decrypt(encryptDataStr, secretKey);
             System.out.println(decryptDateStr);
 
