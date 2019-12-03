@@ -1,7 +1,9 @@
 package com.example.demo.action;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.Data;
 import com.example.demo.domain.PowerSupply;
+import com.example.demo.domain.Station;
 import com.example.demo.tools.HttpTools;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,24 +21,25 @@ public class PowerSupplyAction {
     @RequestMapping("/putPowerSupply")
     public String putMonthBill() {
         String url = "http://211.160.73.240:19018/gffp/pv/data/push";
-        // String url = "http://127.0.0.1:8000/test";
 
         PowerSupply powerSupply = new PowerSupply();
-        powerSupply.ORG_NO = "022321";
-        powerSupply.ORG_NAME = "NAOE";
-        powerSupply.P_ORG_NO = "NAME";
-        powerSupply.ORG_TYPE = "01";
-        powerSupply.ORG_PROPERTY = "01";
-        powerSupply.ORG_SHORTHAND = "DW";
+        powerSupply.setOrgNo("022321");
+        powerSupply.setOrgName("NAOE");
+        powerSupply.setpOrgNo("NAME");
+        powerSupply.setOrgType("01");
+        powerSupply.setSortNo("01");
+        powerSupply.setOrgProperty("01");
+        powerSupply.setOrgShorthand("DW");
 
-        List<PowerSupply> sList = new ArrayList<>();
-        sList.add(powerSupply);
+        List<PowerSupply> dataList = new ArrayList<>();
+        dataList.add(powerSupply);
+        String jsonDataList = JSONObject.toJSONString(dataList);
 
         // DATA数据
         Data data =new Data();
-        data.TOKEN = token;
-        data.DATA_COUNT = "1";
-        data.DATA_LIST = sList;
+        data.setToken(token);
+        data.setDataCount(1);
+        data.setDataList(jsonDataList);
 
         String res = HttpTools.postData(url, data);
         System.out.println(res);

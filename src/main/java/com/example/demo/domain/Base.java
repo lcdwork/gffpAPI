@@ -1,43 +1,49 @@
 package com.example.demo.domain;
 
+import com.alibaba.fastjson.annotation.JSONField;
+
 public class Base {
-    private String REGION_ID;
+    @JSONField(name = "REGION_ID")
+    private String regionId;
 
-    private Long TIME_STAMP;
+    @JSONField(name = "TIME_STAMP")
+    private String timeStamp;
 
-    private String SIGN;
+    @JSONField(name = "SIGN")
+    private String sign;
 
-    private Data DATA;
+    @JSONField(name = "DATA")
+    private String data;
 
-    public String getREGION_ID() {
-        return REGION_ID;
+    public String getRegionId() {
+        return regionId;
     }
 
-    public void setREGION_ID(String rEGION_ID) {
-        REGION_ID = rEGION_ID;
+    public void setRegionId(String regionId) {
+        this.regionId = regionId;
     }
 
-    public Long getTIME_STAMP() {
-        return TIME_STAMP;
+    public String getTimeStamp() {
+        return timeStamp;
     }
 
-    public void setTIME_STAMP(Long tIME_STAMP) {
-        TIME_STAMP = tIME_STAMP;
+    public void setTimeStamp(String timeStamp) {
+        this.timeStamp = timeStamp;
     }
 
-    public String getSIGN() {
-        return SIGN;
+    public String getSign() {
+        return sign;
     }
 
-    public void setSIGN(String sIGN) {
-        SIGN = sIGN;
+    public void setSign(String sign) {
+        this.sign = sign;
     }
 
-    public Data getDATA() {
-        return DATA;
+    public String getData() {
+        return data;
     }
 
-    public void setDATA(Data dATA) {
-        DATA = dATA;
+    public void setData(String data) {
+        this.data = data;
     }
 }

@@ -1,7 +1,9 @@
 package com.example.demo.action;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.Data;
 import com.example.demo.domain.Photovoltaic;
+import com.example.demo.domain.Station;
 import com.example.demo.tools.HttpTools;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,23 +21,23 @@ public class PhotovoltaicAciton {
     @RequestMapping("/putPhotovoltaic")
     public String putStation() {
         String url = "http://211.160.73.240:19018/gffp/pv/data/push";
-        // String url = "http://127.0.0.1:8000/test";
 
         Photovoltaic photovoltaic = new Photovoltaic();
-        photovoltaic.PROVINCE_CODE = "7275257272";
-        photovoltaic.ENERGY_DATE = "201910";
-        photovoltaic.GC_NO = "11221212";
-        photovoltaic.PUR_PQ = 10.00;
-        photovoltaic.GRA_PQ = 20.00;
+        photovoltaic.setProvinceCode("7275257272");
+        photovoltaic.setEnergyDate("201910");
+        photovoltaic.setGcNo("11221212");
+        photovoltaic.setPurPq("20.22");
+        photovoltaic.setGraPq("33.23");
 
-        List<Photovoltaic> sList = new ArrayList<>();
-        sList.add(photovoltaic);
+        List<Photovoltaic> dataList = new ArrayList<>();
+        dataList.add(photovoltaic);
+        String jsonDataList = JSONObject.toJSONString(dataList);
 
         // DATA数据
         Data data =new Data();
-        data.TOKEN = token;
-        data.DATA_COUNT = "1";
-        data.DATA_LIST = sList;
+        data.setToken(token);
+        data.setDataCount(1);
+        data.setDataList(jsonDataList);
 
         String res = HttpTools.postData(url, data);
         System.out.println(res);

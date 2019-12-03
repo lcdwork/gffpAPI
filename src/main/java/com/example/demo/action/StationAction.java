@@ -1,5 +1,6 @@
 package com.example.demo.action;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.Data;
 import com.example.demo.domain.Station;
 import com.example.demo.tools.HttpTools;
@@ -21,29 +22,40 @@ public class StationAction {
     @RequestMapping("/putStation")
     public String putStation() {
         String url = "http://211.160.73.240:19018/gffp/pv/data/stationmsg";
-        // String url = "http://127.0.0.1:8000/test";
 
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Station station = new Station();
-        station.GC_ID = 1212112L;
-        station.GC_NO = "2232187";
-        station.VOLT_CODE = "220v";
-        station.STATUS_CODE = "0";
-        station.ABSO_MODE = "01";
-        station.POVERTY_ALLEV_FLAG = "01";
-        station.CONTRACT_CAP = 20.00;
-        station.GC_DATE = df.format(date);
+        station.setGcNo("1111111");
+        station.setGcId("111111");
+        station.setContractCap("20.00");
+        station.setVoltCode("220V");
+        station.setGcDate("2019-10-11 10:20:30");
+        station.setAbsoMode("01");
+        station.setPovertyAllevFlag("01");
+        station.setStatusCode("1");
 
-        List<Station> sList = new ArrayList<>();
-        sList.add(station);
+        Station b = new Station();
+        b.setGcNo("22222222");
+        b.setGcId("222222");
+        b.setContractCap("20.00");
+        b.setVoltCode("220V");
+        b.setGcDate("2019-10-11 10:20:30");
+        b.setAbsoMode("01");
+        b.setPovertyAllevFlag("01");
+        b.setStatusCode("1");
+
+        List<Station> dataList = new ArrayList<>();
+        dataList.add(station);
+        dataList.add(b);
+        String jsonDataList = JSONObject.toJSONString(dataList);
 
         // DATA数据
         Data data =new Data();
-        data.TOKEN = token;
-        data.DATA_COUNT = "1";
-        data.DATA_LIST = sList;
+        data.setToken(token);
+        data.setDataCount(1);
+        data.setDataList(jsonDataList);
 
         String res = HttpTools.postData(url, data);
         System.out.println(res);

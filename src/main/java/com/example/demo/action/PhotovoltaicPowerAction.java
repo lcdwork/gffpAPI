@@ -1,7 +1,9 @@
 package com.example.demo.action;
 
+import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.Data;
 import com.example.demo.domain.PhotovoltaicPower;
+import com.example.demo.domain.Station;
 import com.example.demo.tools.HttpTools;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,49 +21,48 @@ public class PhotovoltaicPowerAction {
     @RequestMapping("/putPhotovoltaicPower")
     public String putPhotovoltaicPower() {
         String url = "http://211.160.73.240:19018/gffp/pv/data/push";
-        // String url = "http://127.0.0.1:8000/test";
 
         PhotovoltaicPower photovoltaicPower = new PhotovoltaicPower();
-        photovoltaicPower.PROVINCE_CODE = "900090000000";
-        photovoltaicPower.ENERGY_DATE = "2019-10-22 10:20:30";
-        photovoltaicPower.GC_NO = "231232";
-        photovoltaicPower.ORG_NO = "供电单位";
-        photovoltaicPower.METER_ID = "22222";
-        photovoltaicPower.METER_TYPE = "01";
-        photovoltaicPower.P1 = "10";
-        photovoltaicPower.P2 = "10";
-        photovoltaicPower.P3 = "10";
-        photovoltaicPower.P4 = "10";
-        photovoltaicPower.P5 = "10";
-        photovoltaicPower.P6 = "10";
-        photovoltaicPower.P6 = "10";
-        photovoltaicPower.P7 = "10";
-        photovoltaicPower.P8 = "10";
-        photovoltaicPower.P9 = "10";
-        photovoltaicPower.P10 = "10";
-        photovoltaicPower.P11 = "10";
-        photovoltaicPower.P12 = "10";
-        photovoltaicPower.P13 = "10";
-        photovoltaicPower.P14 = "10";
-        photovoltaicPower.P15 = "10";
-        photovoltaicPower.P16 = "10";
-        photovoltaicPower.P17 = "10";
-        photovoltaicPower.P18 = "10";
-        photovoltaicPower.P19 = "10";
-        photovoltaicPower.P20 = "10";
-        photovoltaicPower.P21 = "10";
-        photovoltaicPower.P22 = "10";
-        photovoltaicPower.P23 = "10";
-        photovoltaicPower.P24 = "10";
+        photovoltaicPower.setProvinceCode("900090000000");
+        photovoltaicPower.setEnergyDate("2019-10-22 10:20:30");
+        photovoltaicPower.setGcNo("231232");
+        photovoltaicPower.setOrgNo("231232");
+        photovoltaicPower.setMeterId("231232");
+        photovoltaicPower.setMeterType("01");
+        photovoltaicPower.setP1("20");
+        photovoltaicPower.setP2("20");
+        photovoltaicPower.setP3("20");
+        photovoltaicPower.setP4("20");
+        photovoltaicPower.setP5("20");
+        photovoltaicPower.setP6("20");
+        photovoltaicPower.setP7("20");
+        photovoltaicPower.setP8("20");
+        photovoltaicPower.setP9("20");
+        photovoltaicPower.setP10("20");
+        photovoltaicPower.setP11("20");
+        photovoltaicPower.setP12("20");
+        photovoltaicPower.setP13("20");
+        photovoltaicPower.setP14("20");
+        photovoltaicPower.setP15("20");
+        photovoltaicPower.setP16("20");
+        photovoltaicPower.setP17("20");
+        photovoltaicPower.setP18("20");
+        photovoltaicPower.setP19("20");
+        photovoltaicPower.setP20("20");
+        photovoltaicPower.setP21("20");
+        photovoltaicPower.setP22("20");
+        photovoltaicPower.setP23("20");
+        photovoltaicPower.setP24("20");
 
-        List<PhotovoltaicPower> sList = new ArrayList<>();
-        sList.add(photovoltaicPower);
+        List<PhotovoltaicPower> dataList = new ArrayList<>();
+        dataList.add(photovoltaicPower);
+        String jsonDataList = JSONObject.toJSONString(dataList);
 
         // DATA数据
         Data data =new Data();
-        data.TOKEN = token;
-        data.DATA_COUNT = "1";
-        data.DATA_LIST = sList;
+        data.setToken(token);
+        data.setDataCount(1);
+        data.setDataList(jsonDataList);
 
         String res = HttpTools.postData(url, data);
         System.out.println(res);

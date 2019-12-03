@@ -2,9 +2,10 @@ package com.example.demo.tools;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.collect.monitor.utils.MD5Utils;
+import com.collect.monitor.utils.DESUtils;
 import com.example.demo.domain.Base;
 import com.example.demo.domain.Data;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -24,38 +25,55 @@ public class HttpTools {
         String regionId = "900090000000";
         String regionKey = "90009";
         String secretKey = "FPDDSZJR";
-        Date date = new Date();
 
-        JSONObject jsonObject = new JSONObject();
+        String json = null;
         if (data.length == 0) {
             // DATA数据格式
             HashMap<String, String> map= new HashMap<String, String>();
             map.put("REGION_KEY",regionKey);
 
-            jsonObject.put("REGION_ID", regionId);
-            jsonObject.put("DATA", map);
-            jsonObject.put("TIME_STAMP", date.getTime());
-            // 生成签名
-            jsonObject.put("SIGN", MD5Utils.getSign(regionId,String.valueOf(date.getTime()), JSON.toJSONString(map),regionKey));
-        } else {
-            // BASE数据
             Base base = new Base();
-            base.setREGION_ID(regionId);
-            base.setTIME_STAMP(date.getTime());
-            base.setDATA(data[0]);
-            // 生成签名
-            base.setSIGN(MD5Utils.getSign(base.getREGION_ID(),String.valueOf(date.getTime()), JSON.toJSONString(base.getDATA()),regionKey));
+            base.setRegionId(regionId);
+            base.setTimeStamp(System.currentTimeMillis()/1000+"");
+            base.setData(JSON.toJSONString(map));
 
-            jsonObject.put("REGION_ID", base.getREGION_ID());
-            // jsonObject.put("DATA", DESUtils.encrypt(JSONObject.toJSONString(base.getDATA()),secretKey));
-            jsonObject.put("DATA", base.getDATA());
-            jsonObject.put("TIME_STAMP", base.getTIME_STAMP());
-            jsonObject.put("SIGN", base.getSIGN());
+            StringBuilder sb = new StringBuilder();
+            sb.append(base.getRegionId());
+            sb.append(base.getTimeStamp());
+            sb.append(base.getData());
+            sb.append(regionKey);
+            String cSign = DigestUtils.sha256Hex(sb.toString());
+            base.setSign(cSign);
+            json = JSONObject.toJSONString(base);
+            System.out.print(json);
+        } else {
+            String encryptDataStr = DESUtils.encrypt(JSONObject.toJSONString(data), secretKey);
+            String decryptDateStr = DESUtils.decrypt(encryptDataStr, secretKey);
+            System.out.println(decryptDateStr);
+
+            Base base = new Base();
+            base.setRegionId(regionId);
+            base.setTimeStamp(System.currentTimeMillis()/1000+"");
+            base.setData(encryptDataStr);
+
+            StringBuilder sb = new StringBuilder();
+            sb.append(base.getRegionId());
+            sb.append(base.getTimeStamp());
+            sb.append(base.getData());
+            sb.append(regionKey);
+            String cSign = DigestUtils.sha256Hex(sb.toString());
+            base.setSign(cSign);
+            json = JSONObject.toJSONString(base);
+            System.out.print(json);
         }
-        System.out.println(jsonObject.toJSONString());
-        HttpEntity<String> request = new HttpEntity<>(jsonObject.toJSONString(), headers);
-        ResponseEntity<String> response = restTemplate.postForEntity( url, request , String.class );
-        // ResponseEntity<Map> response = restTemplate.postForEntity( url, request , Map.class );
-        return response.getBody();
+        try {
+            HttpEntity<String> request = new HttpEntity<>(json, headers);
+            ResponseEntity<String> response = restTemplate.postForEntity( url, request , String.class );
+            // ResponseEntity<Map> response = restTemplate.postForEntity( url, request , Map.class );
+            return response.getBody();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return e.toString();
+        }
     }
 }
