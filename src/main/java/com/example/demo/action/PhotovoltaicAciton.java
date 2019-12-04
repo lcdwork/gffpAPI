@@ -19,7 +19,7 @@ public class PhotovoltaicAciton {
 
     @RequestMapping("/putPhotovoltaic")
     public String putStation() {
-        String url = "http://211.160.73.240:19018/gffp/pv/data/push";
+        String url = "http://211.160.73.240:19018/gffp/pv/data/electricityday";
 
         Photovoltaic photovoltaic = new Photovoltaic();
         photovoltaic.setProvinceCode("7275257272");

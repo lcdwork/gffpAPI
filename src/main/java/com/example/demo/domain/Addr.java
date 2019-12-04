@@ -23,36 +23,12 @@ public class Addr {
     private String posY; // 纬度  不为空  6位内小数
     @JSONField(name = "POS_Z")
     private String posZ; // 高程  不为空  4位内小数
-    @JSONField(name = "ROAD_CODE")
-    private String roadCode;
-    @JSONField(name = "COMMUNITY_CODE")
-    private String communityCode;
-    @JSONField(name = "PLATE_NO")
-    private String plateNo;
-
-    public String getRoadCode() {
-        return roadCode;
-    }
-
-    public void setRoadCode(String roadCode) {
-        this.roadCode = roadCode;
-    }
-
-    public String getCommunityCode() {
-        return communityCode;
-    }
-
-    public void setCommunityCode(String communityCode) {
-        this.communityCode = communityCode;
-    }
-
-    public String getPlateNo() {
-        return plateNo;
-    }
-
-    public void setPlateNo(String plateNo) {
-        this.plateNo = plateNo;
-    }
+//    @JSONField(name = "ROAD_CODE")
+//    private String roadCode;
+//    @JSONField(name = "COMMUNITY_CODE")
+//    private String communityCode;
+//    @JSONField(name = "PLATE_NO")
+//    private String plateNo;
 
     public String getGcaId() {
         return gcaId;

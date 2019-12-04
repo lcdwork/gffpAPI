@@ -29,9 +29,9 @@ public class AddrAction {
         addr.setCountyName("XX区");
         addr.setStreetName("XX街道");
         addr.setVillageName("XX村庄");
-        addr.setPosX("80");
-        addr.setPosY("20");
-        addr.setPosZ("090");
+        addr.setPosX("120.222222");
+        addr.setPosY("22.222222");
+        addr.setPosZ("88.20");
 //        addr.setRoadCode("7");
 //        addr.setCommunityCode("1");
 //        addr.setPlateNo("706");

@@ -19,7 +19,7 @@ public class MonthBillAction {
 
     @RequestMapping("/putMonthBill")
     public String putMonthBill() {
-        String url = "http://211.160.73.240:19018/gffp/pv/data/push";
+        String url = "http://211.160.73.240:19018/gffp/pv/data/billmonth";
 
         MonthBill monthBill = new MonthBill();
         monthBill.setPayInfoId("111111");

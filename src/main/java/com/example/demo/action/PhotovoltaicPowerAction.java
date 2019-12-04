@@ -19,7 +19,7 @@ public class PhotovoltaicPowerAction {
 
     @RequestMapping("/putPhotovoltaicPower")
     public String putPhotovoltaicPower() {
-        String url = "http://211.160.73.240:19018/gffp/pv/data/push";
+        String url = "http://211.160.73.240:19018/gffp/pv/data/electricityhour";
 
         PhotovoltaicPower photovoltaicPower = new PhotovoltaicPower();
         photovoltaicPower.setProvinceCode("900090000000");

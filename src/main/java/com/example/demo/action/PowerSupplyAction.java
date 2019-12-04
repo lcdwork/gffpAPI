@@ -19,14 +19,14 @@ public class PowerSupplyAction {
 
     @RequestMapping("/putPowerSupply")
     public String putMonthBill() {
-        String url = "http://211.160.73.240:19018/gffp/pv/data/push";
+        String url = "http://211.160.73.240:19018/gffp/pv/data/company";
 
         PowerSupply powerSupply = new PowerSupply();
         powerSupply.setOrgNo("022321");
         powerSupply.setOrgName("1");
         powerSupply.setpOrgNo("23456");
         powerSupply.setOrgType("01");
-        powerSupply.setSortNo("01");
+        powerSupply.setSortNo("12");
         powerSupply.setOrgProperty("01");
         powerSupply.setOrgShorthand("DW");
 
