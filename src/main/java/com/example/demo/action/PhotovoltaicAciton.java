@@ -3,7 +3,6 @@ package com.example.demo.action;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.Data;
 import com.example.demo.domain.Photovoltaic;
-import com.example.demo.domain.Station;
 import com.example.demo.tools.HttpTools;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +23,8 @@ public class PhotovoltaicAciton {
 
         Photovoltaic photovoltaic = new Photovoltaic();
         photovoltaic.setProvinceCode("7275257272");
-        photovoltaic.setEnergyDate("201910");
         photovoltaic.setGcNo("11221212");
+        photovoltaic.setEnergyDate("201910");
         photovoltaic.setPurPq("20.22");
         photovoltaic.setGraPq("33.23");
 

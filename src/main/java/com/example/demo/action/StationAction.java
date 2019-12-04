@@ -36,19 +36,8 @@ public class StationAction {
         station.setPovertyAllevFlag("01");
         station.setStatusCode("1");
 
-        Station b = new Station();
-        b.setGcNo("22222222");
-        b.setGcId("222222");
-        b.setContractCap("20.00");
-        b.setVoltCode("220V");
-        b.setGcDate("2019-10-11 10:20:30");
-        b.setAbsoMode("01");
-        b.setPovertyAllevFlag("01");
-        b.setStatusCode("1");
-
         List<Station> dataList = new ArrayList<>();
         dataList.add(station);
-        dataList.add(b);
         String jsonDataList = JSONObject.toJSONString(dataList);
 
         // DATA数据

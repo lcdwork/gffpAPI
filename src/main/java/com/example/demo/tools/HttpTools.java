@@ -44,7 +44,7 @@ public class HttpTools {
             String cSign = DigestUtils.sha256Hex(sb.toString());
             base.setSign(cSign);
             json = JSONObject.toJSONString(base);
-            System.out.print(json);
+            System.out.println(json);
         } else {
             String encryptDataStr = DESUtils.encrypt(JSONObject.toJSONString(data[0]), secretKey);
             String decryptDateStr = DESUtils.decrypt(encryptDataStr, secretKey);
@@ -63,7 +63,7 @@ public class HttpTools {
             String cSign = DigestUtils.sha256Hex(sb.toString());
             base.setSign(cSign);
             json = JSONObject.toJSONString(base);
-            System.out.print(json);
+            System.out.println(json);
         }
         try {
             HttpEntity<String> request = new HttpEntity<>(json, headers);

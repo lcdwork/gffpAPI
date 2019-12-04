@@ -3,7 +3,6 @@ package com.example.demo.action;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.Data;
 import com.example.demo.domain.PowerSupply;
-import com.example.demo.domain.Station;
 import com.example.demo.tools.HttpTools;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,8 +23,8 @@ public class PowerSupplyAction {
 
         PowerSupply powerSupply = new PowerSupply();
         powerSupply.setOrgNo("022321");
-        powerSupply.setOrgName("NAOE");
-        powerSupply.setpOrgNo("NAME");
+        powerSupply.setOrgName("1");
+        powerSupply.setpOrgNo("23456");
         powerSupply.setOrgType("01");
         powerSupply.setSortNo("01");
         powerSupply.setOrgProperty("01");

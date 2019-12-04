@@ -3,7 +3,6 @@ package com.example.demo.action;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.Addr;
 import com.example.demo.domain.Data;
-import com.example.demo.domain.Station;
 import com.example.demo.tools.HttpTools;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,16 +22,19 @@ public class AddrAction {
         String url = "http://211.160.73.240:19018/gffp/pv/data/addrmsg";
 
         Addr addr = new Addr();
-        addr.setGcaId("1111111");
-        addr.setGcNo("111111");
-        addr.setCountyName("山东省");
+        addr.setGcaId("7275257272");
+        addr.setGcNo("11221212");
+        addr.setProvinceName("山东省");
         addr.setCityName("XX市");
         addr.setCountyName("XX区");
         addr.setStreetName("XX街道");
-        addr.setVillageName("01");
-        addr.setPosX("120.222222");
-        addr.setPosY("22.222222");
-        addr.setPosZ("88.2222");
+        addr.setVillageName("XX村庄");
+        addr.setPosX("80");
+        addr.setPosY("20");
+        addr.setPosZ("090");
+//        addr.setRoadCode("7");
+//        addr.setCommunityCode("1");
+//        addr.setPlateNo("706");
 
         List<Addr> dataList = new ArrayList<>();
         dataList.add(addr);
