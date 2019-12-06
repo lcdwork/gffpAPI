@@ -5,8 +5,8 @@ import com.alibaba.fastjson.annotation.JSONField;
 public class PhotovoltaicPower {
     @JSONField(name = "PROVINCE_CODE")
     private String provinceCode; // 网省编号    不为空
-    @JSONField(name = "ENERGY_DATE")
-    private String energyDate; // 日期    不为空  格式 为yyyy-MM—dd hh:mm:ss
+    @JSONField(name = "DATA_DATE")
+    private String dataDate; // 日期    不为空  格式 为yyyy-MM—dd hh:mm:ss
     @JSONField(name = "GC_NO")
     private String gcNo; // 发电户号 不为空
     @JSONField(name = "ORG_NO")
@@ -72,12 +72,12 @@ public class PhotovoltaicPower {
         this.provinceCode = provinceCode;
     }
 
-    public String getEnergyDate() {
-        return energyDate;
+    public String getDataDate() {
+        return dataDate;
     }
 
-    public void setEnergyDate(String energyDate) {
-        this.energyDate = energyDate;
+    public void setDataDate(String dataDate) {
+        this.dataDate = dataDate;
     }
 
     public String getGcNo() {

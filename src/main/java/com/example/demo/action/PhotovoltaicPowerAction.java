@@ -23,8 +23,8 @@ public class PhotovoltaicPowerAction {
 
         PhotovoltaicPower photovoltaicPower = new PhotovoltaicPower();
         photovoltaicPower.setProvinceCode("900090000000");
-        photovoltaicPower.setEnergyDate("2019-10-22 10:20:30");
-        photovoltaicPower.setGcNo("231232");
+        photovoltaicPower.setDataDate("2019-10-22 10:20:30");
+        photovoltaicPower.setGcNo("11224411");
         photovoltaicPower.setOrgNo("231232");
         photovoltaicPower.setMeterId("231232");
         photovoltaicPower.setMeterType("01");

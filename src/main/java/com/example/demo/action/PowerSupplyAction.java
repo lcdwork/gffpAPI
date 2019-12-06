@@ -22,7 +22,7 @@ public class PowerSupplyAction {
         String url = "http://211.160.73.240:19018/gffp/pv/data/company";
 
         PowerSupply powerSupply = new PowerSupply();
-        powerSupply.setOrgNo("022321");
+        powerSupply.setOrgNo("11224411");
         powerSupply.setOrgName("1");
         powerSupply.setpOrgNo("23456");
         powerSupply.setOrgType("01");

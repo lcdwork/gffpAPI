@@ -27,8 +27,8 @@ public class StationAction {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         Station station = new Station();
-        station.setGcNo("1111111");
-        station.setGcId("111111");
+        station.setGcNo("11224411");
+        station.setGcId("1111311");
         station.setContractCap("20.00");
         station.setVoltCode("220V");
         station.setGcDate("2019-10-11 10:20:30");

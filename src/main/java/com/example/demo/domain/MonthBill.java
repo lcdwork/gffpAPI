@@ -10,7 +10,7 @@ public class MonthBill {
     @JSONField(name = "AMT_SORT")
     private String amtSort; // 电费类别  不为空且必须是  01 02  03  04  05  06 99   0201 0202  0203 0204 其中一个
     @JSONField(name = "PAY_YM")
-    private String payYm; // 应付年月   不为空 且必须是  yyyyMM  格式
+    private String payYm; // 应付年月   不为空 且必须是  yyyy-MM  格式
     @JSONField(name = "GC_NO")
     private String gcNo; // 发电客户编号   不为空
     @JSONField(name = "T_PUR_PQ")

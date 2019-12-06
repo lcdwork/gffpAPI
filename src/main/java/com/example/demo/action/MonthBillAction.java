@@ -25,8 +25,8 @@ public class MonthBillAction {
         monthBill.setPayInfoId("111111");
         monthBill.setCalcId("111111");
         monthBill.setAmtSort("01");
-        monthBill.setPayYm("201910");
-        monthBill.setGcNo("111111");
+        monthBill.setPayYm("2019-10");
+        monthBill.setGcNo("11224411");
         monthBill.settPurPq("20.22");
         monthBill.settGraPq("20.22");
         monthBill.setPayAmt("33.33");

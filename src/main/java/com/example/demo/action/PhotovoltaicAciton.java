@@ -23,8 +23,8 @@ public class PhotovoltaicAciton {
 
         Photovoltaic photovoltaic = new Photovoltaic();
         photovoltaic.setProvinceCode("7275257272");
-        photovoltaic.setGcNo("11221212");
-        photovoltaic.setEnergyDate("201910");
+        photovoltaic.setGcNo("11224411");
+        photovoltaic.setEnergyDate("2019-10-22");
         photovoltaic.setPurPq("20.22");
         photovoltaic.setGraPq("33.23");
 

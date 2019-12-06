@@ -23,7 +23,7 @@ public class AddrAction {
 
         Addr addr = new Addr();
         addr.setGcaId("7275257272");
-        addr.setGcNo("11221212");
+        addr.setGcNo("11224411");
         addr.setProvinceName("山东省");
         addr.setCityName("XX市");
         addr.setCountyName("XX区");

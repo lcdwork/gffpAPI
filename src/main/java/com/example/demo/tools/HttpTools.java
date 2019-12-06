@@ -18,7 +18,7 @@ public class HttpTools {
     public static String postData(String url, Data...data) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON_UTF8);
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
         // REGION_ID、REGION_KEY均由接口提供方提供
         String regionId = "900090000000";
