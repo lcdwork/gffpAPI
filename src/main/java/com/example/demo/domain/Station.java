@@ -2,6 +2,7 @@ package com.example.demo.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
+// 发电客户信息
 public class Station {
     @JSONField(name = "GC_ID")
     private String gcId; // 发电客户标识

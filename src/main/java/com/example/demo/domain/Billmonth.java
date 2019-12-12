@@ -2,7 +2,8 @@ package com.example.demo.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-public class MonthBill {
+// 光伏发电账单应付信息（月）
+public class Billmonth {
     @JSONField(name = "PAY_INFO_ID")
     private String payInfoId; // 应付信息标识  不为空
     @JSONField(name = "CALC_ID")

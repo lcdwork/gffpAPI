@@ -2,7 +2,8 @@ package com.example.demo.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-public class PowerSupply {
+// 供电单位
+public class Company {
     @JSONField(name = "ORG_NO")
     private String orgNo; // 供电单位编号 不为空
     @JSONField(name = "ORG_NAME")

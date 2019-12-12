@@ -2,7 +2,7 @@ package com.example.demo.action;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.Data;
-import com.example.demo.domain.Photovoltaic;
+import com.example.demo.domain.Electricityday;
 import com.example.demo.tools.HttpTools;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class PhotovoltaicAciton {
+public class ElectricitydayAciton {
 
     @Value("${token}")
     public String token;
@@ -21,15 +21,15 @@ public class PhotovoltaicAciton {
     public String putStation() {
         String url = "http://211.160.73.240:19018/gffp/pv/data/electricityday";
 
-        Photovoltaic photovoltaic = new Photovoltaic();
-        photovoltaic.setProvinceCode("7275257272");
-        photovoltaic.setGcNo("11224411");
-        photovoltaic.setEnergyDate("2019-10-22");
-        photovoltaic.setPurPq("20.22");
-        photovoltaic.setGraPq("33.23");
+        Electricityday electricityday = new Electricityday();
+        electricityday.setProvinceCode("7275257272");
+        electricityday.setGcNo("11224411");
+        electricityday.setEnergyDate("2019-10-22");
+        electricityday.setPurPq("20.22");
+        electricityday.setGraPq("33.23");
 
-        List<Photovoltaic> dataList = new ArrayList<>();
-        dataList.add(photovoltaic);
+        List<Electricityday> dataList = new ArrayList<>();
+        dataList.add(electricityday);
         String jsonDataList = JSONObject.toJSONString(dataList);
 
         // DATA数据

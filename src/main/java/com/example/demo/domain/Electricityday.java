@@ -2,7 +2,8 @@ package com.example.demo.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
-public class Photovoltaic {
+// 光伏发电信息（日）
+public class Electricityday {
     @JSONField(name = "PROVINCE_CODE")
     private String provinceCode; // 网省编号    不为空
     @JSONField(name = "ENERGY_DATE")

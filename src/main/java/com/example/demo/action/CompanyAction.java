@@ -2,7 +2,7 @@ package com.example.demo.action;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.Data;
-import com.example.demo.domain.PowerSupply;
+import com.example.demo.domain.Company;
 import com.example.demo.tools.HttpTools;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class PowerSupplyAction {
+public class CompanyAction {
 
     @Value("${token}")
     public String token;
@@ -21,17 +21,17 @@ public class PowerSupplyAction {
     public String putMonthBill() {
         String url = "http://211.160.73.240:19018/gffp/pv/data/company";
 
-        PowerSupply powerSupply = new PowerSupply();
-        powerSupply.setOrgNo("11224411");
-        powerSupply.setOrgName("1");
-        powerSupply.setpOrgNo("23456");
-        powerSupply.setOrgType("01");
-        powerSupply.setSortNo("12");
-        powerSupply.setOrgProperty("01");
-        powerSupply.setOrgShorthand("DW");
+        Company company = new Company();
+        company.setOrgNo("11224411");
+        company.setOrgName("1");
+        company.setpOrgNo("23456");
+        company.setOrgType("01");
+        company.setSortNo("12");
+        company.setOrgProperty("01");
+        company.setOrgShorthand("DW");
 
-        List<PowerSupply> dataList = new ArrayList<>();
-        dataList.add(powerSupply);
+        List<Company> dataList = new ArrayList<>();
+        dataList.add(company);
         String jsonDataList = JSONObject.toJSONString(dataList);
 
         // DATA数据

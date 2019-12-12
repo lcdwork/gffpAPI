@@ -2,6 +2,7 @@ package com.example.demo.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
 
+// 发电客户地址信息
 public class Addr {
     @JSONField(name = "GCA_ID")
     private String gcaId; // 发电地址标识   不为空
