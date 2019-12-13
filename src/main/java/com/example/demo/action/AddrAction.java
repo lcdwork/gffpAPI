@@ -1,10 +1,10 @@
 package com.example.demo.action;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.Addr;
 import com.example.demo.domain.Data;
 import com.example.demo.tools.HttpTools;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,12 +14,10 @@ import java.util.List;
 @RestController
 public class AddrAction {
 
-    @Value("${token}")
-    public String token;
-
     @RequestMapping("/putAddr")
-    public String putAddr() {
+    public void putAddr() {
         String url = "http://211.160.73.240:19018/gffp/pv/data/addrmsg";
+        String token = null;
 
         Addr addr = new Addr();
         addr.setGcaId("7275257272");
@@ -40,14 +38,21 @@ public class AddrAction {
         dataList.add(addr);
         String jsonDataList = JSONObject.toJSONString(dataList);
 
-        // DATA数据
-        Data data =new Data();
-        data.setToken(token);
-        data.setDataCount(1);
-        data.setDataList(jsonDataList);
 
-        String res = HttpTools.postData(url, data);
-        System.out.println(res);
-        return res;
+        String getToken = HttpTools.getToken();
+        JSONObject jsonObject = JSON.parseObject(getToken);
+        if(jsonObject.getString("resCode").equals("0000")) {
+            token = jsonObject.getJSONObject("resData").getString("token");
+            System.out.println(token);
+            // DATA数据
+            Data data =new Data();
+            data.setToken(token);
+            data.setDataCount(1);
+            data.setDataList(jsonDataList);
+            String res = HttpTools.postData(url, data);
+            System.out.println(res);
+        }else {
+            System.out.println(getToken);
+        }
     }
 }
