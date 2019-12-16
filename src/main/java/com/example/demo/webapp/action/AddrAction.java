@@ -1,19 +1,13 @@
-package com.example.demo.action;
+package com.example.demo.webapp.action;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.example.demo.domain.Addr;
-import com.example.demo.domain.Data;
-import com.example.demo.service.IAddrService;
-import com.example.demo.tools.HttpTools;
+import com.example.demo.webapp.domain.Addr;
+import com.example.demo.webapp.service.IAddrService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @ControllerAdvice

@@ -1,4 +1,4 @@
-package com.example.demo.action;
+package com.example.demo.webapp.action;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

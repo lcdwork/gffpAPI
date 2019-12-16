@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.webapp.domain;
 
 
 import org.springframework.beans.factory.annotation.Value;

@@ -1,6 +1,6 @@
-package com.example.demo.service;
+package com.example.demo.webapp.service;
 
-import com.example.demo.domain.Addr;
+import com.example.demo.webapp.domain.Addr;
 
 import java.util.List;
 

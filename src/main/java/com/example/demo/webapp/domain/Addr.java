@@ -1,4 +1,4 @@
-package com.example.demo.domain;
+package com.example.demo.webapp.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.riozenc.titanTool.mybatis.MybatisEntity;

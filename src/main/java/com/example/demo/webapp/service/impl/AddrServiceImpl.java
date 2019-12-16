@@ -1,8 +1,8 @@
-package com.example.demo.service.impl;
+package com.example.demo.webapp.service.impl;
 
-import com.example.demo.dao.AddrDao;
-import com.example.demo.domain.Addr;
-import com.example.demo.service.IAddrService;
+import com.example.demo.webapp.dao.AddrDao;
+import com.example.demo.webapp.domain.Addr;
+import com.example.demo.webapp.service.IAddrService;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 
