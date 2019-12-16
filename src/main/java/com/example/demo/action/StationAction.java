@@ -16,12 +16,14 @@ import java.util.List;
 @Component
 public class StationAction {
 
+    @Value("${station.url}")
+    public String url;
+
     @Value("${token}")
     public String token;
 
-    @Scheduled(cron = "${scheduleTask.stationCron}")
+//    @Scheduled(cron = "${station.cron}")
     public String putStation() {
-        String url = "http://211.160.73.240:19018/gffp/pv/data/stationmsg";
 
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demo.domain.Addr;
 import com.example.demo.domain.Data;
 import com.example.demo.tools.HttpTools;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -14,9 +15,11 @@ import java.util.List;
 @Component
 public class AddrAction {
 
-    @Scheduled(cron = "${scheduleTask.addrCron}")
+    @Value("${addr.url}")
+    public String url;
+
+    @Scheduled(cron = "${addr.cron}")
     public void putAddr() {
-        String url = "http://211.160.73.240:19018/gffp/pv/data/addrmsg";
         String token = null;
 
         Addr addr = new Addr();

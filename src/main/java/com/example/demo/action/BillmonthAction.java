@@ -14,12 +14,14 @@ import java.util.List;
 @Component
 public class BillmonthAction {
 
+    @Value("${billmonth.url}")
+    public String url;
+
     @Value("${token}")
     public String token;
 
-    @Scheduled(cron = "${scheduleTask.billmonthCron}")
+//    @Scheduled(cron = "${billmonth.cron}")
     public String putMonthBill() {
-        String url = "http://211.160.73.240:19018/gffp/pv/data/billmonth";
 
         Billmonth billmonth = new Billmonth();
         billmonth.setPayInfoId("111111");

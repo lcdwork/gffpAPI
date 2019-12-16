@@ -14,12 +14,14 @@ import java.util.List;
 @Component
 public class ElectricitydayAciton {
 
+    @Value("${electricityday.url}")
+    public String url;
+
     @Value("${token}")
     public String token;
 
-    @Scheduled(cron = "${scheduleTask.electricitydayCron}")
+//    @Scheduled(cron = "${electricityday.cron}")
     public String putStation() {
-        String url = "http://211.160.73.240:19018/gffp/pv/data/electricityday";
 
         Electricityday electricityday = new Electricityday();
         electricityday.setProvinceCode("7275257272");

@@ -15,12 +15,14 @@ import java.util.List;
 @Component
 public class CompanyAction {
 
+    @Value("${company.url}")
+    public String url;
+
     @Value("${token}")
     public String token;
 
-    @Scheduled(cron = "${scheduleTask.companyCron}")
+//    @Scheduled(cron = "${company.cron}")
     public String putMonthBill() {
-        String url = "http://211.160.73.240:19018/gffp/pv/data/company";
 
         Company company = new Company();
         company.setOrgNo("11224411");
