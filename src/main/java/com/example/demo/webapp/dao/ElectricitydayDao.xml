@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="com.example.demo.webapp.dao.ElectricitydayDao">
+
+    <sql id = "Base_Column_List">
+        GC_ID,GC_NO,VOLT_CODE,STATUS_CODE,ABSO_MODE,POVERTY_ALLEV_FLAG,GC_DATE
+	</sql>
+
+    <select id="findByWhere" parameterType="Electricityday" resultType="Electricityday" useCache="true">
+        select
+        <include refid="Base_Column_List" />
+        from GF_ELECTRICITYDAY
+    </select>
+
+</mapper>

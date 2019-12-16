@@ -1,9 +1,10 @@
 package com.example.demo.webapp.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.riozenc.titanTool.mybatis.MybatisEntity;
 
 // 光伏发电信息（日）
-public class Electricityday {
+public class Electricityday implements MybatisEntity {
     @JSONField(name = "PROVINCE_CODE")
     private String provinceCode; // 网省编号    不为空
     @JSONField(name = "ENERGY_DATE")

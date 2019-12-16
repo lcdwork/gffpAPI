@@ -4,14 +4,21 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demo.webapp.domain.Data;
 import com.example.demo.webapp.domain.Electricityhour;
 import com.example.demo.tools.HttpTools;
+import com.example.demo.webapp.service.IElectricityhourService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@ControllerAdvice
 public class ElectricityhourAction {
+
+    @Autowired
+    @Qualifier("electricityhourServiceImpl")
+    private IElectricityhourService electricityhourService;
 
     @Value("${electricityhour.url}")
     public String url;

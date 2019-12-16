@@ -18,13 +18,4 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<!-- <setting name="aggressiveLazyLoading" value="false" /> -->
 	</settings>
 
-
-
-
-
-<!--	<plugins>-->
-<!--		<plugin-->
-<!--			interceptor="com.riozenc.cim.support.mybatis.PaginationInterceptor"></plugin>-->
-<!--	</plugins>-->
-
 </configuration>

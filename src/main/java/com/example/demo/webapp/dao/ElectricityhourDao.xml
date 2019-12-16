@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="com.example.demo.webapp.dao.ElectricityhourDao">
+
+    <sql id = "Base_Column_List">
+        PROVINCE_CODE,DATA_DATE,GC_NO,ORG_NO,METER_ID,METER_TYPE,P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12,
+        P13,P14,P15,P16,P17,P18,P19,P20,P21,P22,P23,P24
+	</sql>
+
+    <select id="findByWhere" parameterType="Electricityhour" resultType="Electricityhour" useCache="true">
+        select
+        <include refid="Base_Column_List" />
+        from GF_ELECTRICITYHOUR
+    </select>
+
+</mapper>

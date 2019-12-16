@@ -4,16 +4,23 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demo.webapp.domain.Data;
 import com.example.demo.webapp.domain.Station;
 import com.example.demo.tools.HttpTools;
+import com.example.demo.webapp.service.IStationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Component
+@ControllerAdvice
 public class StationAction {
+
+    @Autowired
+    @Qualifier("stationServiceImpl")
+    private IStationService stationService;
 
     @Value("${station.url}")
     public String url;

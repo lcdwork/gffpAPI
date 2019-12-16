@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="com.example.demo.webapp.dao.BillmonthDao">
+
+    <sql id = "Base_Column_List">
+        PAY_INFO_ID,CALC_ID,AMT_SORT,PAY_YM,GC_NO,T_PUR_PQ,T_GRA_PQ,PAY_AMT,PAY_PUR_AMT,PAY_GRA_AMT,PAIED_PUR_AMT,
+        PAIED_GRA_AMT,PUR_TAX_AMT,GRA_TAX_AMT,TAX_AMT,OWE_AMT,RELEASE_DATE,SETTLE_FLAG,PRINT_MARK,BATCH_ID,STATUS_CODE
+	</sql>
+
+    <select id="findByWhere" parameterType="Billmonth" resultType="Billmonth" useCache="true">
+        select
+        <include refid="Base_Column_List" />
+        from GF_BILLMONTH
+    </select>
+
+</mapper>

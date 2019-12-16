@@ -1,9 +1,10 @@
 package com.example.demo.webapp.domain;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import com.riozenc.titanTool.mybatis.MybatisEntity;
 
 // 供电单位
-public class Company {
+public class Company implements MybatisEntity {
     @JSONField(name = "ORG_NO")
     private String orgNo; // 供电单位编号 不为空
     @JSONField(name = "ORG_NAME")
