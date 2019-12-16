@@ -5,19 +5,19 @@ import com.example.demo.domain.Data;
 import com.example.demo.domain.Billmonth;
 import com.example.demo.tools.HttpTools;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Component
 public class BillmonthAction {
 
     @Value("${token}")
     public String token;
 
-    @RequestMapping("/putMonthBill")
+    @Scheduled(cron = "${scheduleTask.billmonthCron}")
     public String putMonthBill() {
         String url = "http://211.160.73.240:19018/gffp/pv/data/billmonth";
 

@@ -5,19 +5,19 @@ import com.example.demo.domain.Data;
 import com.example.demo.domain.Electricityday;
 import com.example.demo.tools.HttpTools;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RestController
+@Component
 public class ElectricitydayAciton {
 
     @Value("${token}")
     public String token;
 
-    @RequestMapping("/putPhotovoltaic")
+    @Scheduled(cron = "${scheduleTask.electricitydayCron}")
     public String putStation() {
         String url = "http://211.160.73.240:19018/gffp/pv/data/electricityday";
 
