@@ -10,6 +10,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.web.client.RestTemplate;
 
 import java.text.SimpleDateFormat;
@@ -20,6 +21,7 @@ public class HttpTools {
     public static String regionKey = "90009";
     public static String secretKey = "FPDDSZJR";
     // 推送数据方法
+    @Retryable
     public static String postData(String url, Data data) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -59,7 +61,9 @@ public class HttpTools {
         }
     }
     // 获取token方法
+    @Retryable
     public static String getToken() {
+        System.out.println(1111111);
         String url = "http://211.160.73.240:19018/gffp/pv/data/gettoken";
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
@@ -84,11 +88,19 @@ public class HttpTools {
         try {
             HttpEntity<String> request = new HttpEntity<>(json, headers);
             ResponseEntity<String> response = restTemplate.postForEntity( url, request , String.class );
-            return response.getBody();
+            JSONObject jsonObject = JSON.parseObject(response.getBody());
+            if(jsonObject.getString("resCode").equals("0000")) {
+                return jsonObject.getJSONObject("resData").getString("token");
+            }else {
+                throw new Exception(jsonObject.getString("resMsg"));
+            }
+            // return response.getBody();
         } catch (Exception e) {
             e.printStackTrace();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            return "{\"resCode\":\"抛出异常\",\"resMsg\":" + e.toString() + ",\"resTime\":"+sdf.format(System.currentTimeMillis())+"}";
+            String res = "{\"resCode\":\"抛出异常\",\"resMsg\":" + e.toString() + ",\"resTime\":"+sdf.format(System.currentTimeMillis())+"}";
+            System.out.println(res);
+            return null;
         }
     }
 }
