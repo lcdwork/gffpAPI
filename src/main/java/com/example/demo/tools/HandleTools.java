@@ -18,7 +18,6 @@ public class HandleTools {
             System.out.println(res);
             return res;
         }else {
-            System.out.println("fail");
             return null;
         }
     }

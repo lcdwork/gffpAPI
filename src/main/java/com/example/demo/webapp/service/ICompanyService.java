@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ICompanyService {
     public List<Company> findByWhere(Company t);
+
+    public int updateSuccessList(List<Company> list);
 }

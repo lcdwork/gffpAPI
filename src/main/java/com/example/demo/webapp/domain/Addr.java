@@ -32,6 +32,16 @@ public class Addr implements MybatisEntity {
 //    @JSONField(name = "PLATE_NO")
 //    private String plateNo;
 
+    private Number status;
+
+    public Number getStatus() {
+        return status;
+    }
+
+    public void setStatus(Number status) {
+        this.status = status;
+    }
+
     public String getGcaId() {
         return gcaId;
     }

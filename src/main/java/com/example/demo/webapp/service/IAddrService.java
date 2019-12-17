@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface IAddrService {
     public List<Addr> findByWhere(Addr t);
+
+    public int updateByList(List<Addr> list);
 }

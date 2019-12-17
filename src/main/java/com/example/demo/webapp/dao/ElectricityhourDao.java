@@ -10,7 +10,6 @@ import java.util.List;
 @TransactionDAO
 public class ElectricityhourDao extends AbstractTransactionDAOSupport {
 
-    @PaginationSupport
     public List<Electricityhour> findByWhere(Electricityhour t) {
         // TODO Auto-generated method stub
         return getPersistanceManager().find(getNamespace() + ".findByWhere", t);

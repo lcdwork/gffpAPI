@@ -18,4 +18,9 @@ public class CompanyServiceImpl implements ICompanyService {
     public List<Company> findByWhere(Company t) {
         return companyDao.findByWhere(t);
     }
+
+    @Override
+    public int updateSuccessList(List<Company> list) {
+        return companyDao.updateSuccessList(list);
+    }
 }

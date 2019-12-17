@@ -10,9 +10,12 @@ import java.util.List;
 @TransactionDAO
 public class AddrDao extends AbstractTransactionDAOSupport {
 
-    @PaginationSupport
     public List<Addr> findByWhere(Addr t) {
         // TODO Auto-generated method stub
         return getPersistanceManager().find(getNamespace() + ".findByWhere", t);
+    }
+    public int updateByList(List<Addr> list) {
+        // TODO Auto-generated method stub
+        return getPersistanceManager().update(getNamespace() + ".updateByList", list);
     }
 }

@@ -18,4 +18,9 @@ public class AddrServiceImpl implements IAddrService {
     public List<Addr> findByWhere(Addr t) {
         return addrDao.findByWhere(t);
     }
+
+    @Override
+    public int updateByList(List<Addr> list) {
+        return addrDao.updateByList(list);
+    }
 }

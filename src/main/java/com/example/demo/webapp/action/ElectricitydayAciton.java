@@ -28,6 +28,8 @@ public class ElectricitydayAciton {
         List<Electricityday> dataList = electricitydayService.findByWhere(null);
         String jsonDataList = JSONObject.toJSONString(dataList);
 
-        HandleTools.putData(url,dataList.size(),jsonDataList);
+        if(dataList.size()>0){
+            HandleTools.putData(url,dataList.size(),jsonDataList);
+        }
     }
 }

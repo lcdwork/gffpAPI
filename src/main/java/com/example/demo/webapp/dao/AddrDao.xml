@@ -11,10 +11,34 @@
         <include refid="Base_Column_List" />
         from GF_ADDR
         <where>
+            STATUS !=1 OR STATUS IS NULL
             <if test = "gcaId != null">
                 and GCA_ID = #{gca_id}
             </if>
         </where>
     </select>
+
+    <update id="updateSuccessList" parameterType="java.util.List" flushCache="true">
+        update GF_ADDR
+        <set>
+            STATUS = 1
+        </set>
+        <where>
+            GCA_ID IN
+            <foreach item="item" collection="list" open="(" separator="," close=")">
+                ${item.gcaId}
+            </foreach>
+        </where>
+    </update>
+
+    <update id="updateFailList" parameterType="java.util.List" flushCache="true">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            UPDATE GF_ADDR
+            <set>
+                STATUS = 1
+            </set>
+            WHERE GCA_ID =  ${item.gcaId}
+        </foreach>
+    </update>
 
 </mapper>

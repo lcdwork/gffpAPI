@@ -10,7 +10,6 @@ import java.util.List;
 @TransactionDAO
 public class StationDao extends AbstractTransactionDAOSupport {
 
-@PaginationSupport
 public List<Station> findByWhere(Station t) {
     // TODO Auto-generated method stub
     return getPersistanceManager().find(getNamespace() + ".findByWhere", t);
