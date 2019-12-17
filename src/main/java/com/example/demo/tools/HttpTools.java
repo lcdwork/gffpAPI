@@ -48,13 +48,11 @@ public class HttpTools {
         String cSign = DigestUtils.sha256Hex(sb.toString());
         base.setSign(cSign);
         String json = JSONObject.toJSONString(base);
-        System.out.println(json);
         try {
-            return json;
-            // HttpEntity<String> request = new HttpEntity<>(json, headers);
-            // ResponseEntity<String> response = restTemplate.postForEntity( url, request , String.class );
-            //// ResponseEntity<Map> response = restTemplate.postForEntity( url, request , Map.class );
-            // return response.getBody();
+             HttpEntity<String> request = new HttpEntity<>(json, headers);
+             ResponseEntity<String> response = restTemplate.postForEntity( url, request , String.class );
+            // ResponseEntity<Map> response = restTemplate.postForEntity( url, request , Map.class );
+             return response.getBody();
         } catch (Exception e) {
             e.printStackTrace();
             return e.toString();
@@ -83,7 +81,6 @@ public class HttpTools {
         String cSign = DigestUtils.sha256Hex(sb.toString());
         base.setSign(cSign);
         String json = JSONObject.toJSONString(base);
-        System.out.println(json);
         try {
             HttpEntity<String> request = new HttpEntity<>(json, headers);
             ResponseEntity<String> response = restTemplate.postForEntity( url, request , String.class );

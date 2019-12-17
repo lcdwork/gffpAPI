@@ -3,7 +3,7 @@
 <mapper	namespace="com.example.demo.webapp.dao.ElectricitydayDao">
 
     <sql id = "Base_Column_List">
-        GC_ID,GC_NO,VOLT_CODE,STATUS_CODE,ABSO_MODE,POVERTY_ALLEV_FLAG,GC_DATE
+        PROVINCE_CODE,ENERGY_DATE,GC_NO,PUR_PQ,GRA_PQ
 	</sql>
 
     <select id="findByWhere" parameterType="Electricityday" resultType="Electricityday" useCache="true">
