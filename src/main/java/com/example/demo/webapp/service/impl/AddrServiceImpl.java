@@ -7,6 +7,7 @@ import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 
 import java.util.List;
+import java.util.Map;
 
 @TransactionService
 public class AddrServiceImpl implements IAddrService {
@@ -20,7 +21,12 @@ public class AddrServiceImpl implements IAddrService {
     }
 
     @Override
-    public int updateByList(List<Addr> list) {
-        return addrDao.updateByList(list);
+    public int updateSuccessList(List<Addr> list) {
+        return addrDao.updateSuccessList(list);
+    }
+
+    @Override
+    public int updateFailList(List<Map> list) {
+        return addrDao.updateFailList(list);
     }
 }

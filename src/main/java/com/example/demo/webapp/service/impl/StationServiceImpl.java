@@ -7,6 +7,7 @@ import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 
 import java.util.List;
+import java.util.Map;
 
 @TransactionService
 public class StationServiceImpl implements IStationService {
@@ -17,5 +18,15 @@ public class StationServiceImpl implements IStationService {
     @Override
     public List<Station> findByWhere(Station t) {
         return stationDao.findByWhere(t);
+    }
+
+    @Override
+    public int updateSuccessList(List<Station> list) {
+        return stationDao.updateSuccessList(list);
+    }
+
+    @Override
+    public int updateFailList(List<Map> list) {
+        return stationDao.updateFailList(list);
     }
 }

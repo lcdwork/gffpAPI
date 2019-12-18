@@ -7,6 +7,7 @@ import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 
 import java.util.List;
+import java.util.Map;
 
 @TransactionService
 public class ElectricitydayServiceImpl implements IElectricitydayService {
@@ -17,5 +18,15 @@ public class ElectricitydayServiceImpl implements IElectricitydayService {
     @Override
     public List<Electricityday> findByWhere(Electricityday t) {
         return electricitydayDao.findByWhere(t);
+    }
+
+    @Override
+    public int updateSuccessList(List<Electricityday> list) {
+        return electricitydayDao.updateSuccessList(list);
+    }
+
+    @Override
+    public int updateFailList(List<Map> list) {
+        return electricitydayDao.updateFailList(list);
     }
 }

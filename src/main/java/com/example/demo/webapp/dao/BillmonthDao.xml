@@ -13,4 +13,37 @@
         from GF_BILLMONTH
     </select>
 
+    <update id="updateSuccessList" parameterType="java.util.List" flushCache="true">
+        update GF_BILLMONTH
+        <set>
+            STATUS = 1
+        </set>
+        <where>
+            PAY_INFO_ID IN
+            <foreach item="item" collection="list" open="(" separator="," close=")">
+                ${item.payInfoId}
+            </foreach>
+        </where>
+    </update>
+
+    <update id="updateFailList" parameterType="java.util.List" flushCache="true">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            UPDATE GF_BILLMONTH
+            <set>
+                STATUS = 0, SEND_FLAG = SEND_FLAG + 1
+            </set>
+            <where>
+                <if test="item.PAY_INFO_ID !=null">
+                    and PAY_INFO_ID = #{item.PAY_INFO_ID}
+                </if>
+                <if test="item.CALC_ID !=null">
+                    and CALC_ID = #{item.CALC_ID}
+                </if>
+                <if test="item.GC_NO !=null">
+                    and GC_NO = #{item.GC_NO}
+                </if>
+            </where>
+        </foreach>
+    </update>
+
 </mapper>

@@ -7,6 +7,7 @@ import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 
 import java.util.List;
+import java.util.Map;
 
 @TransactionService
 public class CompanyServiceImpl implements ICompanyService {
@@ -22,5 +23,10 @@ public class CompanyServiceImpl implements ICompanyService {
     @Override
     public int updateSuccessList(List<Company> list) {
         return companyDao.updateSuccessList(list);
+    }
+
+    @Override
+    public int updateFailList(List<Map> list) {
+        return companyDao.updateFailList(list);
     }
 }

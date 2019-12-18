@@ -12,6 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import java.util.List;
+import java.util.Map;
 
 @ControllerAdvice
 public class AddrAction {
@@ -33,10 +34,12 @@ public class AddrAction {
             String res = HandleTools.putData(url,dataList.size(),jsonDataList);
             if (res != null) {
                 JSONObject jsonObject = JSON.parseObject(res);
-                if(jsonObject.getString("resCode").equals("0000")) {
-                    addrService.updateByList(dataList);
-                } else if(jsonObject.getString("resCode").equals("3001")){
-                    addrService.updateByList(dataList);
+                if (jsonObject.getString("resCode").equals("0000")) {
+                    addrService.updateSuccessList(dataList);
+                } else if (jsonObject.getString("resCode").equals("3001")) {
+                    List<Map> failList = JSON.parseArray(jsonObject.getString("resData"),Map.class);
+                    addrService.updateSuccessList(dataList);
+                    addrService.updateFailList(failList);
                 } else {
                     System.out.println("推送失败，未更新任何数据！");
                 }

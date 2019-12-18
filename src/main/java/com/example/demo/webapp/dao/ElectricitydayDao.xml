@@ -12,4 +12,31 @@
         from GF_ELECTRICITYDAY
     </select>
 
+    <update id="updateSuccessList" parameterType="java.util.List" flushCache="true">
+        update GF_ELECTRICITYDAY
+        <set>
+            STATUS = 1
+        </set>
+        <where>
+            PROVINCE_CODE IN
+            <foreach item="item" collection="list" open="(" separator="," close=")">
+                ${item.provinceCode}
+            </foreach>
+        </where>
+    </update>
+
+    <update id="updateFailList" parameterType="java.util.List" flushCache="true">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            UPDATE GF_ELECTRICITYDAY
+            <set>
+                STATUS = 0, SEND_FLAG = SEND_FLAG + 1
+            </set>
+            <where>
+                <if test="item.GC_NO !=null">
+                    and GC_NO = #{item.GC_NO}
+                </if>
+            </where>
+        </foreach>
+    </update>
+
 </mapper>

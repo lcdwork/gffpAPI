@@ -6,6 +6,7 @@ import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
 
 import java.util.List;
+import java.util.Map;
 
 @TransactionDAO
 public class AddrDao extends AbstractTransactionDAOSupport {
@@ -14,8 +15,13 @@ public class AddrDao extends AbstractTransactionDAOSupport {
         // TODO Auto-generated method stub
         return getPersistanceManager().find(getNamespace() + ".findByWhere", t);
     }
-    public int updateByList(List<Addr> list) {
+    public int updateSuccessList(List<Addr> list) {
         // TODO Auto-generated method stub
-        return getPersistanceManager().update(getNamespace() + ".updateByList", list);
+        return getPersistanceManager().update(getNamespace() + ".updateSuccessList", list);
+    }
+
+    public int updateFailList(List<Map> list) {
+        // TODO Auto-generated method stub
+        return getPersistanceManager().update(getNamespace() + ".updateFailList", list);
     }
 }

@@ -1,7 +1,6 @@
 package com.example.demo.webapp.action;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.tools.HandleTools;
 import com.example.demo.webapp.domain.Company;
@@ -26,7 +25,7 @@ public class CompanyAction {
     public String url;
 
     @Scheduled(cron = "${company.cron}")
-    public void putMonthBill() {
+    public void putCompany() {
 
         List<Company> dataList = companyService.findByWhere(null);
         String jsonDataList = JSONObject.toJSONString(dataList);
@@ -36,11 +35,11 @@ public class CompanyAction {
             if (res != null) {
                 JSONObject jsonObject = JSON.parseObject(res);
                 if (jsonObject.getString("resCode").equals("0000")) {
-                    companyService.updateByList(dataList);
+                    companyService.updateSuccessList(dataList);
                 } else if (jsonObject.getString("resCode").equals("3001")) {
-                    List failList = jsonObject.getJSONArray("resData");
-                    companyService.updateByList(dataList);
-                    companyService.updateByList(failList);
+                    List<Map> failList = JSON.parseArray(jsonObject.getString("resData"),Map.class);
+                    companyService.updateSuccessList(dataList);
+                    companyService.updateFailList(failList);
                 } else {
                     System.out.println("推送失败，未更新任何数据！");
                 }

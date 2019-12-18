@@ -10,6 +10,9 @@
         select
         <include refid="Base_Column_List" />
         from GF_COMPANY
+        <where>
+            STATUS = 0 AND SEND_FLAG  &lt; 3
+        </where>
     </select>
 
     <update id="updateSuccessList" parameterType="java.util.List" flushCache="true">
@@ -18,9 +21,9 @@
             STATUS = 1
         </set>
         <where>
-            GCA_ID IN
+            ORG_NO IN
             <foreach item="item" collection="list" open="(" separator="," close=")">
-                ${item.gcaId}
+                ${item.orgNo}
             </foreach>
         </where>
     </update>
@@ -29,9 +32,22 @@
         <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
             UPDATE GF_COMPANY
             <set>
-                STATUS = 1
+                STATUS = 0, SEND_FLAG = SEND_FLAG + 1
             </set>
-            WHERE GCA_ID =  ${item.gcaId}
+            <where>
+                <if test="item.ORG_NO !=null">
+                    and ORG_NO = #{item.ORG_NO}
+                </if>
+                <if test="item.ORG_NAME !=null">
+                    and ORG_NAME = #{item.ORG_NAME}
+                </if>
+                <if test="item.P_ORG_NO !=null">
+                    and P_ORG_NO = #{item.P_ORG_NO}
+                </if>
+                <if test="item.ORG_SHORTHAND !=null">
+                    and ORG_SHORTHAND = #{item.ORG_SHORTHAND}
+                </if>
+            </where>
         </foreach>
     </update>
 

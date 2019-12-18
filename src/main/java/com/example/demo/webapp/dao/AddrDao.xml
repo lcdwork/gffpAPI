@@ -11,10 +11,7 @@
         <include refid="Base_Column_List" />
         from GF_ADDR
         <where>
-            STATUS !=1 OR STATUS IS NULL
-            <if test = "gcaId != null">
-                and GCA_ID = #{gca_id}
-            </if>
+            STATUS = 0 AND SEND_FLAG  &lt; 3
         </where>
     </select>
 
@@ -37,7 +34,17 @@
             <set>
                 STATUS = 1
             </set>
-            WHERE GCA_ID =  ${item.gcaId}
+            <set>
+                STATUS = 0, SEND_FLAG = SEND_FLAG + 1
+            </set>
+            <where>
+                <if test="item.GCA_ID !=null">
+                    and GCA_ID = #{item.GCA_ID}
+                </if>
+                <if test="item.GC_NO !=null">
+                    and GC_NO = #{item.GC_NO}
+                </if>
+            </where>
         </foreach>
     </update>
 

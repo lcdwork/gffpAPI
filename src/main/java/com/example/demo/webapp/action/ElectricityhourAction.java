@@ -1,5 +1,6 @@
 package com.example.demo.webapp.action;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.example.demo.tools.HandleTools;
 import com.example.demo.webapp.domain.Electricityhour;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @ControllerAdvice
 public class ElectricityhourAction {
@@ -29,8 +31,20 @@ public class ElectricityhourAction {
         List<Electricityhour> dataList = electricityhourService.findByWhere(null);
         String jsonDataList = JSONObject.toJSONString(dataList);
 
-        if(dataList.size()>0){
-            HandleTools.putData(url,dataList.size(),jsonDataList);
+        if(dataList.size()>0) {
+            String res = HandleTools.putData(url, dataList.size(), jsonDataList);
+            if (res != null) {
+                JSONObject jsonObject = JSON.parseObject(res);
+                if (jsonObject.getString("resCode").equals("0000")) {
+                    electricityhourService.updateSuccessList(dataList);
+                } else if (jsonObject.getString("resCode").equals("3001")) {
+                    List<Map> failList = JSON.parseArray(jsonObject.getString("resData"),Map.class);
+                    electricityhourService.updateSuccessList(dataList);
+                    electricityhourService.updateFailList(failList);
+                } else {
+                    System.out.println("推送失败，未更新任何数据！");
+                }
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 
 import java.util.List;
+import java.util.Map;
 
 @TransactionService
 public class BillmonthServiceImpl implements IBillmonthService {
@@ -17,5 +18,15 @@ public class BillmonthServiceImpl implements IBillmonthService {
     @Override
     public List<Billmonth> findByWhere(Billmonth t) {
         return billmonthDao.findByWhere(t);
+    }
+
+    @Override
+    public int updateSuccessList(List<Billmonth> list) {
+        return billmonthDao.updateSuccessList(list);
+    }
+
+    @Override
+    public int updateFailList(List<Map> list) {
+        return billmonthDao.updateFailList(list);
     }
 }
