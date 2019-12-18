@@ -11,19 +11,26 @@
         select
         <include refid="Base_Column_List" />
         from GF_ELECTRICITYHOUR
+        <where>
+            STATUS = 0 AND SEND_FLAG  &lt; 3
+        </where>
     </select>
 
     <update id="updateSuccessList" parameterType="java.util.List" flushCache="true">
-        update GF_ELECTRICITYHOUR
-        <set>
-            STATUS = 1
-        </set>
-        <where>
-            PROVINCE_CODE IN
-            <foreach item="item" collection="list" open="(" separator="," close=")">
-                ${item.provinceCode}
-            </foreach>
-        </where>
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            UPDATE GF_ELECTRICITYHOUR
+            <set>
+                STATUS = 1
+            </set>
+            <where>
+                <if test="item.gcNo !=null">
+                    and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.dataDate !=null">
+                    and DATA_DATE = #{item.dataDate}
+                </if>
+            </where>
+        </foreach>
     </update>
 
     <update id="updateFailList" parameterType="java.util.List" flushCache="true">
@@ -33,8 +40,11 @@
                 STATUS = 0, SEND_FLAG = SEND_FLAG + 1
             </set>
             <where>
-                <if test="item.GC_NO !=null">
-                    and GC_NO = #{item.GC_NO}
+                <if test="item.gcNo !=null">
+                    and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.dataDate !=null">
+                    and DATA_DATE = #{item.dataDate}
                 </if>
             </where>
         </foreach>

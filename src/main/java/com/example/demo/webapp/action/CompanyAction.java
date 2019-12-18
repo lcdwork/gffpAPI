@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -37,9 +38,20 @@ public class CompanyAction {
                 if (jsonObject.getString("resCode").equals("0000")) {
                     companyService.updateSuccessList(dataList);
                 } else if (jsonObject.getString("resCode").equals("3001")) {
-                    List<Map> failList = JSON.parseArray(jsonObject.getString("resData"),Map.class);
-                    companyService.updateSuccessList(dataList);
-                    companyService.updateFailList(failList);
+                    List<Map> returnList = JSON.parseArray(jsonObject.getString("resData"),Map.class);
+                    for (int i = 0; i < returnList.size(); i++) {
+                        Iterator<Company> it = dataList.iterator();
+                        while (it.hasNext()) {
+                            Company c = it.next(); // next() 返回下一个元素
+                            if (c.getOrgNo().equals(returnList.get(i).get("ORG_NO"))) {
+                                it.remove(); // remove() 移除元素
+                            }
+                        }
+                    }
+                    if(dataList.size() > 0) {
+                        companyService.updateSuccessList(dataList);
+                    }
+                    companyService.updateFailList(returnList);
                 } else {
                     System.out.println("推送失败，未更新任何数据！");
                 }

@@ -21,7 +21,7 @@ public class ElectricitydayDao extends AbstractTransactionDAOSupport {
         return getPersistanceManager().update(getNamespace() + ".updateSuccessList", list);
     }
 
-    public int updateFailList(List<Map> list) {
+    public int updateFailList(List<Electricityday> list) {
         // TODO Auto-generated method stub
         return getPersistanceManager().update(getNamespace() + ".updateFailList", list);
     }

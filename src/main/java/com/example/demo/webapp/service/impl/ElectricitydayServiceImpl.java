@@ -26,7 +26,7 @@ public class ElectricitydayServiceImpl implements IElectricitydayService {
     }
 
     @Override
-    public int updateFailList(List<Map> list) {
+    public int updateFailList(List<Electricityday> list) {
         return electricitydayDao.updateFailList(list);
     }
 }

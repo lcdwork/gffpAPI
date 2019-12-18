@@ -10,6 +10,36 @@
         select
         <include refid="Base_Column_List" />
         from GF_STATION
+        <where>
+            STATUS = 0 AND SEND_FLAG  &lt; 3
+        </where>
     </select>
+
+    <update id="updateSuccessList" parameterType="java.util.List" flushCache="true">
+        update GF_STATION
+        <set>
+            STATUS = 1
+        </set>
+        <where>
+            GC_ID IN
+            <foreach item="item" collection="list" open="(" separator="," close=")">
+                ${item.gcId}
+            </foreach>
+        </where>
+    </update>
+
+    <update id="updateFailList" parameterType="java.util.List" flushCache="true">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            UPDATE GF_STATION
+            <set>
+                STATUS = 0, SEND_FLAG = SEND_FLAG + 1
+            </set>
+            <where>
+                <if test="item.GC_ID !=null">
+                    and GC_ID = #{item.GC_ID}
+                </if>
+            </where>
+        </foreach>
+    </update>
 
 </mapper>

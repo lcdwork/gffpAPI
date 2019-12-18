@@ -10,5 +10,5 @@ public interface IElectricitydayService {
 
     public int updateSuccessList(List<Electricityday> list);
 
-    public int updateFailList(List<Map> list);
+    public int updateFailList(List<Electricityday> list);
 }

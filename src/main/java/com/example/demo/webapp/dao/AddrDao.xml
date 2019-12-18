@@ -32,17 +32,11 @@
         <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
             UPDATE GF_ADDR
             <set>
-                STATUS = 1
-            </set>
-            <set>
                 STATUS = 0, SEND_FLAG = SEND_FLAG + 1
             </set>
             <where>
                 <if test="item.GCA_ID !=null">
                     and GCA_ID = #{item.GCA_ID}
-                </if>
-                <if test="item.GC_NO !=null">
-                    and GC_NO = #{item.GC_NO}
                 </if>
             </where>
         </foreach>

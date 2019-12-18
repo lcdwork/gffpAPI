@@ -35,17 +35,9 @@
                 STATUS = 0, SEND_FLAG = SEND_FLAG + 1
             </set>
             <where>
+                STATUS != 1
                 <if test="item.ORG_NO !=null">
                     and ORG_NO = #{item.ORG_NO}
-                </if>
-                <if test="item.ORG_NAME !=null">
-                    and ORG_NAME = #{item.ORG_NAME}
-                </if>
-                <if test="item.P_ORG_NO !=null">
-                    and P_ORG_NO = #{item.P_ORG_NO}
-                </if>
-                <if test="item.ORG_SHORTHAND !=null">
-                    and ORG_SHORTHAND = #{item.ORG_SHORTHAND}
                 </if>
             </where>
         </foreach>

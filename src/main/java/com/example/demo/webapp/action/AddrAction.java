@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -30,21 +31,31 @@ public class AddrAction {
         List<Addr> dataList = addrService.findByWhere(null);
         String jsonDataList = JSONObject.toJSONString(dataList);
 
-        if(dataList.size()>0){
-            String res = HandleTools.putData(url,dataList.size(),jsonDataList);
+        if(dataList.size()>0) {
+            String res = HandleTools.putData(url, dataList.size(), jsonDataList);
             if (res != null) {
                 JSONObject jsonObject = JSON.parseObject(res);
                 if (jsonObject.getString("resCode").equals("0000")) {
                     addrService.updateSuccessList(dataList);
                 } else if (jsonObject.getString("resCode").equals("3001")) {
-                    List<Map> failList = JSON.parseArray(jsonObject.getString("resData"),Map.class);
-                    addrService.updateSuccessList(dataList);
-                    addrService.updateFailList(failList);
+                    List<Map> returnList = JSON.parseArray(jsonObject.getString("resData"),Map.class);
+                    for (int i = 0; i < returnList.size(); i++) {
+                        Iterator<Addr> it = dataList.iterator();
+                        while (it.hasNext()) {
+                            Addr c = it.next(); // next() 返回下一个元素
+                            if (c.getGcNo().equals(returnList.get(i).get("GC_NO"))) {
+                                it.remove(); // remove() 移除元素
+                            }
+                        }
+                    }
+                    if(dataList.size() > 0) {
+                        addrService.updateSuccessList(dataList);
+                    }
+                    addrService.updateFailList(returnList);
                 } else {
                     System.out.println("推送失败，未更新任何数据！");
                 }
             }
-            System.out.println(res);
         }
     }
 }

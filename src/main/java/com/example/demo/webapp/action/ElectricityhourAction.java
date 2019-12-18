@@ -12,6 +12,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -38,8 +39,24 @@ public class ElectricityhourAction {
                 if (jsonObject.getString("resCode").equals("0000")) {
                     electricityhourService.updateSuccessList(dataList);
                 } else if (jsonObject.getString("resCode").equals("3001")) {
-                    List<Map> failList = JSON.parseArray(jsonObject.getString("resData"),Map.class);
-                    electricityhourService.updateSuccessList(dataList);
+                    List<Map> returnList = JSON.parseArray(jsonObject.getString("resData"),Map.class);
+                    List<Electricityhour> failList = new ArrayList();
+                    for (Map item : returnList) {
+                        Iterator<Electricityhour> it = dataList.iterator();
+                        while (it.hasNext()) {
+                            Electricityhour c = it.next(); // next() 返回下一个元素
+                            if (c.getGcNo().equals(item.get("GC_NO"))) {
+                                Electricityhour failObject = new Electricityhour();
+                                failObject.setGcNo(c.getGcNo());
+                                failObject.setDataDate(c.getDataDate());
+                                failList.add(failObject);
+                                it.remove(); // remove() 移除元素
+                            }
+                        }
+                    }
+                    if(dataList.size() > 0) {
+                        electricityhourService.updateSuccessList(dataList);
+                    }
                     electricityhourService.updateFailList(failList);
                 } else {
                     System.out.println("推送失败，未更新任何数据！");

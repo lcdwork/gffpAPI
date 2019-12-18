@@ -10,5 +10,5 @@ public interface IElectricityhourService {
 
     public int updateSuccessList(List<Electricityhour> list);
 
-    public int updateFailList(List<Map> list);
+    public int updateFailList(List<Electricityhour> list);
 }

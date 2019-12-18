@@ -11,6 +11,9 @@
         select
         <include refid="Base_Column_List" />
         from GF_BILLMONTH
+        <where>
+            STATUS = 0 AND SEND_FLAG  &lt; 3
+        </where>
     </select>
 
     <update id="updateSuccessList" parameterType="java.util.List" flushCache="true">
@@ -35,12 +38,6 @@
             <where>
                 <if test="item.PAY_INFO_ID !=null">
                     and PAY_INFO_ID = #{item.PAY_INFO_ID}
-                </if>
-                <if test="item.CALC_ID !=null">
-                    and CALC_ID = #{item.CALC_ID}
-                </if>
-                <if test="item.GC_NO !=null">
-                    and GC_NO = #{item.GC_NO}
                 </if>
             </where>
         </foreach>
