@@ -27,7 +27,7 @@ public class ElectricitydayAciton {
     public String url;
 
 //    @Scheduled(cron = "${electricityday.cron}")
-    public void putStation() {
+    public void putElectricityday() {
 
         List<Electricityday> dataList = electricitydayService.findByWhere(null);
         String jsonDataList = JSONObject.toJSONString(dataList);

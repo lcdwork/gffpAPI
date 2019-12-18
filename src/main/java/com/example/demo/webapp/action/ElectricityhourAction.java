@@ -27,7 +27,7 @@ public class ElectricityhourAction {
     public String url;
 
 //    @Scheduled(cron = "${electricityhour.cron}")
-    public void putPhotovoltaicPower() {
+    public void putElectricityhour() {
 
         List<Electricityhour> dataList = electricityhourService.findByWhere(null);
         String jsonDataList = JSONObject.toJSONString(dataList);
