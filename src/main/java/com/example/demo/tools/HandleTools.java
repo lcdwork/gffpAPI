@@ -16,9 +16,10 @@ public class HandleTools {
             data.setDataList(jsonDataList);
             String res = HttpTools.postData(url, data);
             System.out.println(res);
-            return res;
-        }else {
-            return null;
+            if(res != null) {
+                return res;
+            }
         }
+        return null;
     }
 }

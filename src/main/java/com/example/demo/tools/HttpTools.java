@@ -29,7 +29,6 @@ public class HttpTools {
         base.setRegionId(ConfigurationProperties.regionId);
         base.setTimeStamp(System.currentTimeMillis()/1000+"");
 
-
         String encryptDataStr = DESUtils.encrypt(JSONObject.toJSONString(data), ConfigurationProperties.secretKey);
         String decryptDateStr = DESUtils.decrypt(encryptDataStr, ConfigurationProperties.secretKey);
         System.out.println(decryptDateStr);
@@ -50,7 +49,8 @@ public class HttpTools {
              return response.getBody();
         } catch (Exception e) {
             e.printStackTrace();
-            return e.toString();
+//            return e.toString();
+            return null;
         }
     }
     // 获取token方法
