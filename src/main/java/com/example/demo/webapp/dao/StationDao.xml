@@ -3,7 +3,7 @@
 <mapper	namespace="com.example.demo.webapp.dao.StationDao">
 
     <sql id = "Base_Column_List">
-        PROVINCE_CODE,ENERGY_DATE,GC_NO,PUR_PQ,GRA_PQ
+        GC_ID,GC_NO,VOLT_CODE,STATUS_CODE,ABSO_MODE,POVERTY_ALLEV_FLAG,CONTRACT_CAP,GC_DATE
 	</sql>
 
     <select id="findByWhere" parameterType="Station" resultType="Station" useCache="true">
@@ -16,16 +16,38 @@
     </select>
 
     <update id="updateSuccessList" parameterType="java.util.List" flushCache="true">
-        update GF_STATION
-        <set>
-            STATUS = 1
-        </set>
-        <where>
-            GC_ID IN
-            <foreach item="item" collection="list" open="(" separator="," close=")">
-                ${item.gcId}
-            </foreach>
-        </where>
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            UPDATE GF_STATION
+            <set>
+                STATUS = 1
+            </set>
+            <where>
+                <if test="item.gcId !=null">
+                    and GC_ID = #{item.gcId}
+                </if>
+                <if test="item.gcNo !=null">
+                    and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.VoltCode !=null">
+                    and VOLT_CODE = #{item.VoltCode}
+                </if>
+                <if test="item.StatusCode !=null">
+                    and STATUS_CODE = #{item.StatusCode}
+                </if>
+                <if test="item.AbsoMode !=null">
+                    and ABSO_MODE = #{item.AbsoMode}
+                </if>
+                <if test="item.PovertyAllevFlag !=null">
+                    and POVERTY_ALLEV_FLAG = #{item.PovertyAllevFlag}
+                </if>
+                <if test="item.ContractCap !=null">
+                    and CONTRACT_CAP = #{item.ContractCap}
+                </if>
+                <if test="item.GcDate !=null">
+                    and GC_DATE = to_date(substr(#{item.GcDate},1,19),'yyyy-mm-dd hh24:mi:ss')
+                </if>
+            </where>
+        </foreach>
     </update>
 
     <update id="updateFailList" parameterType="java.util.List" flushCache="true">
@@ -35,8 +57,29 @@
                 STATUS = 0, SEND_FLAG = SEND_FLAG + 1
             </set>
             <where>
-                <if test="item.GC_ID !=null">
-                    and GC_ID = #{item.GC_ID}
+                <if test="item.gcId !=null">
+                    and GC_ID = #{item.gcId}
+                </if>
+                <if test="item.gcNo !=null">
+                    and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.VoltCode !=null">
+                    and VOLT_CODE = #{item.VoltCode}
+                </if>
+                <if test="item.StatusCode !=null">
+                    and STATUS_CODE = #{item.StatusCode}
+                </if>
+                <if test="item.AbsoMode !=null">
+                    and ABSO_MODE = #{item.AbsoMode}
+                </if>
+                <if test="item.PovertyAllevFlag !=null">
+                    and POVERTY_ALLEV_FLAG = #{item.PovertyAllevFlag}
+                </if>
+                <if test="item.ContractCap !=null">
+                    and CONTRACT_CAP = #{item.ContractCap}
+                </if>
+                <if test="item.GcDate !=null">
+                    and GC_DATE = to_date(substr(#{item.GcDate},1,19),'yyyy-mm-dd hh24:mi:ss')
                 </if>
             </where>
         </foreach>

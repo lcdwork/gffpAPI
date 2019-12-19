@@ -17,16 +17,38 @@
     </select>
 
     <update id="updateSuccessList" parameterType="java.util.List" flushCache="true">
-        update GF_BILLMONTH
-        <set>
-            STATUS = 1
-        </set>
-        <where>
-            PAY_INFO_ID IN
-            <foreach item="item" collection="list" open="(" separator="," close=")">
-                ${item.payInfoId}
-            </foreach>
-        </where>
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            UPDATE GF_BILLMONTH
+            <set>
+                STATUS = 1
+            </set>
+            <where>
+                <if test="item.payInfoId !=null">
+                    and PAY_INFO_ID = #{item.payInfoId}
+                </if>
+                <if test="item.calcId !=null">
+                    and CALC_ID = #{item.calcId}
+                </if>
+                <if test="item.gcNo !=null">
+                    and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.payYm !=null">
+                    and PAY_YM = #{item.payYm}
+                </if>
+                <if test="item.releaseDate !=null">
+                    and RELEASE_DATE = #{item.releaseDate}
+                </if>
+                <if test="item.tPurPq !=null">
+                    and T_PUR_PQ = #{item.tPurPq}
+                </if>
+                <if test="item.tGraPq !=null">
+                    and T_GRA_PQ = #{item.tGraPq}
+                </if>
+                <if test="item.payAmt !=null">
+                    and PAY_AMT = #{item.payAmt}
+                </if>
+            </where>
+        </foreach>
     </update>
 
     <update id="updateFailList" parameterType="java.util.List" flushCache="true">
@@ -36,8 +58,29 @@
                 STATUS = 0, SEND_FLAG = SEND_FLAG + 1
             </set>
             <where>
-                <if test="item.PAY_INFO_ID !=null">
-                    and PAY_INFO_ID = #{item.PAY_INFO_ID}
+                <if test="item.payInfoId !=null">
+                    and PAY_INFO_ID = #{item.payInfoId}
+                </if>
+                <if test="item.calcId !=null">
+                    and CALC_ID = #{item.calcId}
+                </if>
+                <if test="item.gcNo !=null">
+                    and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.payYm !=null">
+                    and PAY_YM = #{item.payYm}
+                </if>
+                <if test="item.releaseDate !=null">
+                    and RELEASE_DATE = #{item.releaseDate}
+                </if>
+                <if test="item.tPurPq !=null">
+                    and T_PUR_PQ = #{item.tPurPq}
+                </if>
+                <if test="item.tGraPq !=null">
+                    and T_GRA_PQ = #{item.tGraPq}
+                </if>
+                <if test="item.payAmt !=null">
+                    and PAY_AMT = #{item.payAmt}
                 </if>
             </where>
         </foreach>

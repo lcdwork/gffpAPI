@@ -22,11 +22,20 @@
                 STATUS = 1
             </set>
             <where>
-                <if test="item.gcNo !=null">
-                    and GC_NO = #{item.gcNo}
+                <if test="item.provinceCode !=null">
+                    and PROVINCE_CODE = #{item.provinceCode}
                 </if>
                 <if test="item.energyDate !=null">
                     and ENERGY_DATE = #{item.energyDate}
+                </if>
+                <if test="item.gcNo !=null">
+                    and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.purPq !=null">
+                    and PUR_PQ = #{item.purPq}
+                </if>
+                <if test="item.graPq !=null">
+                    and GRA_PQ = #{item.graPq}
                 </if>
             </where>
         </foreach>
@@ -39,11 +48,20 @@
                 STATUS = 0, SEND_FLAG = SEND_FLAG + 1
             </set>
             <where>
-                <if test="item.gcNo !=null">
-                    and GC_NO = #{item.gcNo}
+                <if test="item.provinceCode !=null">
+                    and PROVINCE_CODE = #{item.provinceCode}
                 </if>
                 <if test="item.energyDate !=null">
                     and ENERGY_DATE = #{item.energyDate}
+                </if>
+                <if test="item.gcNo !=null">
+                    and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.purPq !=null">
+                    and PUR_PQ = #{item.purPq}
+                </if>
+                <if test="item.graPq !=null">
+                    and GRA_PQ = #{item.graPq}
                 </if>
             </where>
         </foreach>

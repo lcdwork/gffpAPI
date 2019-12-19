@@ -10,5 +10,5 @@ public interface IBillmonthService {
 
     public int updateSuccessList(List<Billmonth> list);
 
-    public int updateFailList(List<Map> list);
+    public int updateFailList(List<Billmonth> list);
 }

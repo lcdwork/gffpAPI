@@ -8,8 +8,10 @@ import com.example.demo.webapp.service.IStationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +26,7 @@ public class StationAction {
     @Value("${station.url}")
     public String url;
 
-//    @Scheduled(cron = "${station.cron}")
+    @Scheduled(cron = "${station.cron}")
     public void putStation() {
 
         List<Station> dataList = stationService.findByWhere(null);
@@ -38,11 +40,13 @@ public class StationAction {
                     stationService.updateSuccessList(dataList);
                 } else if (jsonObject.getString("resCode").equals("3001")) {
                     List<Map> returnList = JSON.parseArray(jsonObject.getString("resData"),Map.class);
+                    List<Station> failList = new ArrayList();
                     for (int i = 0; i < returnList.size(); i++) {
                         Iterator<Station> it = dataList.iterator();
                         while (it.hasNext()) {
                             Station c = it.next(); // next() 返回下一个元素
                             if (c.getGcNo().equals(returnList.get(i).get("GC_NO"))) {
+                                failList.add(c);
                                 it.remove(); // remove() 移除元素
                             }
                         }
@@ -50,10 +54,14 @@ public class StationAction {
                     if(dataList.size() > 0) {
                         stationService.updateSuccessList(dataList);
                     }
-                    stationService.updateFailList(returnList);
+                    stationService.updateFailList(failList);
                 } else {
-                    System.out.println("推送失败，未更新任何数据！");
+                    stationService.updateFailList(dataList);
+                    System.out.println("{\"resCode\":\"" + jsonObject.getString("resCode") + "\",\"resMsg\":\"" + jsonObject.getString("resMsg") + "\",\"resTime\":\"" + jsonObject.getString("resTime") +"\"}");
                 }
+            }
+            else {
+                System.out.println("网络问题请求失败！");
             }
         }
     }

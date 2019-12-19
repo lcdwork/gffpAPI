@@ -26,7 +26,7 @@ public class ElectricityhourAction {
     @Value("${electricityhour.url}")
     public String url;
 
-//    @Scheduled(cron = "${electricityhour.cron}")
+    @Scheduled(cron = "${electricityhour.cron}")
     public void putElectricityhour() {
 
         List<Electricityhour> dataList = electricityhourService.findByWhere(null);
@@ -46,10 +46,7 @@ public class ElectricityhourAction {
                         while (it.hasNext()) {
                             Electricityhour c = it.next(); // next() 返回下一个元素
                             if (c.getGcNo().equals(item.get("GC_NO"))) {
-                                Electricityhour failObject = new Electricityhour();
-                                failObject.setGcNo(c.getGcNo());
-                                failObject.setDataDate(c.getDataDate());
-                                failList.add(failObject);
+                                failList.add(c);
                                 it.remove(); // remove() 移除元素
                             }
                         }
@@ -59,8 +56,12 @@ public class ElectricityhourAction {
                     }
                     electricityhourService.updateFailList(failList);
                 } else {
-                    System.out.println("推送失败，未更新任何数据！");
+                    electricityhourService.updateFailList(dataList);
+                    System.out.println("{\"resCode\":\"" + jsonObject.getString("resCode") + "\",\"resMsg\":\"" + jsonObject.getString("resMsg") + "\",\"resTime\":\"" + jsonObject.getString("resTime") +"\"}");
                 }
+            }
+            else {
+                System.out.println("网络问题请求失败！");
             }
         }
     }

@@ -26,7 +26,7 @@ public class BillmonthServiceImpl implements IBillmonthService {
     }
 
     @Override
-    public int updateFailList(List<Map> list) {
+    public int updateFailList(List<Billmonth> list) {
         return billmonthDao.updateFailList(list);
     }
 }

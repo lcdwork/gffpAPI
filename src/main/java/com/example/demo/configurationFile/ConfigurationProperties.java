@@ -26,7 +26,7 @@ public class ConfigurationProperties {
         this.secretKey = secretKey;
     }
 
-    @Value("${gffp.tokenUrl}")
+    @Value("${token.url}")
     public void setTokenUrl(String tokenUrl) {
         this.tokenUrl = tokenUrl;
     }

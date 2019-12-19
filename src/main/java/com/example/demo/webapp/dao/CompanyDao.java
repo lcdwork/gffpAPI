@@ -5,7 +5,6 @@ import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
 
 import java.util.List;
-import java.util.Map;
 
 @TransactionDAO
 public class CompanyDao extends AbstractTransactionDAOSupport {
@@ -20,7 +19,7 @@ public class CompanyDao extends AbstractTransactionDAOSupport {
         return getPersistanceManager().update(getNamespace() + ".updateSuccessList", list);
     }
 
-    public int updateFailList(List<Map> list) {
+    public int updateFailList(List<Company> list) {
         // TODO Auto-generated method stub
         return getPersistanceManager().update(getNamespace() + ".updateFailList", list);
     }

@@ -23,11 +23,23 @@
                 STATUS = 1
             </set>
             <where>
+                <if test="item.provinceCode !=null">
+                    and PROVINCE_CODE = #{item.provinceCode}
+                </if>
+                <if test="item.dataDate !=null">
+                    and DATA_DATE = to_date(substr(#{item.dataDate},1,19),'yyyy-mm-dd hh24:mi:ss')
+                </if>
                 <if test="item.gcNo !=null">
                     and GC_NO = #{item.gcNo}
                 </if>
-                <if test="item.dataDate !=null">
-                    and DATA_DATE = #{item.dataDate}
+                <if test="item.orgNo !=null">
+                    and ORG_NO = #{item.orgNo}
+                </if>
+                <if test="item.meterId !=null">
+                    and METER_ID = #{item.meterId}
+                </if>
+                <if test="item.meterType !=null">
+                    and METER_TYPE = #{item.meterType}
                 </if>
             </where>
         </foreach>
@@ -40,11 +52,23 @@
                 STATUS = 0, SEND_FLAG = SEND_FLAG + 1
             </set>
             <where>
+                <if test="item.provinceCode !=null">
+                    and PROVINCE_CODE = #{item.provinceCode}
+                </if>
+                <if test="item.dataDate !=null">
+                    and DATA_DATE = to_date(substr(#{item.dataDate},1,19),'yyyy-mm-dd hh24:mi:ss')
+                </if>
                 <if test="item.gcNo !=null">
                     and GC_NO = #{item.gcNo}
                 </if>
-                <if test="item.dataDate !=null">
-                    and DATA_DATE = #{item.dataDate}
+                <if test="item.orgNo !=null">
+                    and ORG_NO = #{item.orgNo}
+                </if>
+                <if test="item.meterId !=null">
+                    and METER_ID = #{item.meterId}
+                </if>
+                <if test="item.meterType !=null">
+                    and METER_TYPE = #{item.meterType}
                 </if>
             </where>
         </foreach>

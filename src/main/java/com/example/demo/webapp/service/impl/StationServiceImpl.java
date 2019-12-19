@@ -7,7 +7,6 @@ import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.annotation.TransactionService;
 
 import java.util.List;
-import java.util.Map;
 
 @TransactionService
 public class StationServiceImpl implements IStationService {
@@ -26,7 +25,7 @@ public class StationServiceImpl implements IStationService {
     }
 
     @Override
-    public int updateFailList(List<Map> list) {
+    public int updateFailList(List<Station> list) {
         return stationDao.updateFailList(list);
     }
 }

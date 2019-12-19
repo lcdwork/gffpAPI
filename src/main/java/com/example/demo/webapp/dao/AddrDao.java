@@ -1,12 +1,10 @@
 package com.example.demo.webapp.dao;
 
 import com.example.demo.webapp.domain.Addr;
-import com.riozenc.titanTool.annotation.PaginationSupport;
 import com.riozenc.titanTool.annotation.TransactionDAO;
 import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
 
 import java.util.List;
-import java.util.Map;
 
 @TransactionDAO
 public class AddrDao extends AbstractTransactionDAOSupport {
@@ -20,7 +18,7 @@ public class AddrDao extends AbstractTransactionDAOSupport {
         return getPersistanceManager().update(getNamespace() + ".updateSuccessList", list);
     }
 
-    public int updateFailList(List<Map> list) {
+    public int updateFailList(List<Addr> list) {
         // TODO Auto-generated method stub
         return getPersistanceManager().update(getNamespace() + ".updateFailList", list);
     }

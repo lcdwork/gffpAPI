@@ -16,16 +16,35 @@
     </select>
 
     <update id="updateSuccessList" parameterType="java.util.List" flushCache="true">
-        update GF_COMPANY
-        <set>
-            STATUS = 1
-        </set>
-        <where>
-            ORG_NO IN
-            <foreach item="item" collection="list" open="(" separator="," close=")">
-                ${item.orgNo}
-            </foreach>
-        </where>
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            UPDATE GF_COMPANY
+            <set>
+                STATUS = 1
+            </set>
+            <where>
+                <if test="item.orgNo !=null">
+                    and ORG_NO = #{item.orgNo}
+                </if>
+                <if test="item.orgName !=null">
+                    and ORG_NAME = #{item.orgName}
+                </if>
+                <if test="item.pOrgNo !=null">
+                    and P_ORG_NO = #{item.pOrgNo}
+                </if>
+                <if test="item.orgType !=null">
+                    and ORG_TYPE = #{item.orgType}
+                </if>
+                <if test="item.sortNo !=null">
+                    and SORT_NO = #{item.sortNo}
+                </if>
+                <if test="item.orgProperty !=null">
+                    and ORG_PROPERTY = #{item.orgProperty}
+                </if>
+                <if test="item.orgShorthand !=null">
+                    and ORG_SHORTHAND = #{item.orgShorthand}
+                </if>
+            </where>
+        </foreach>
     </update>
 
     <update id="updateFailList" parameterType="java.util.List" flushCache="true">
@@ -35,9 +54,26 @@
                 STATUS = 0, SEND_FLAG = SEND_FLAG + 1
             </set>
             <where>
-                STATUS != 1
-                <if test="item.ORG_NO !=null">
-                    and ORG_NO = #{item.ORG_NO}
+                <if test="item.orgNo !=null">
+                    and ORG_NO = #{item.orgNo}
+                </if>
+                <if test="item.orgName !=null">
+                    and ORG_NAME = #{item.orgName}
+                </if>
+                <if test="item.pOrgNo !=null">
+                    and P_ORG_NO = #{item.pOrgNo}
+                </if>
+                <if test="item.orgType !=null">
+                    and ORG_TYPE = #{item.orgType}
+                </if>
+                <if test="item.sortNo !=null">
+                    and SORT_NO = #{item.sortNo}
+                </if>
+                <if test="item.orgProperty !=null">
+                    and ORG_PROPERTY = #{item.orgProperty}
+                </if>
+                <if test="item.orgShorthand !=null">
+                    and ORG_SHORTHAND = #{item.orgShorthand}
                 </if>
             </where>
         </foreach>

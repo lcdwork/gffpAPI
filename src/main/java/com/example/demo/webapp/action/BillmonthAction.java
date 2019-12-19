@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class BillmonthAction {
     @Value("${billmonth.url}")
     public String url;
 
-//    @Scheduled(cron = "${billmonth.cron}")
+    @Scheduled(cron = "${billmonth.cron}")
     public void putMonthBill() {
 
         List<Billmonth> dataList = billmonthService.findByWhere(null);
@@ -38,12 +39,14 @@ public class BillmonthAction {
                 if (jsonObject.getString("resCode").equals("0000")) {
                     billmonthService.updateSuccessList(dataList);
                 } else if (jsonObject.getString("resCode").equals("3001")) {
+                    List<Billmonth> failList = new ArrayList();
                     List<Map> returnList = JSON.parseArray(jsonObject.getString("resData"),Map.class);
                     for (int i = 0; i < returnList.size(); i++) {
                         Iterator<Billmonth> it = dataList.iterator();
                         while (it.hasNext()) {
                             Billmonth c = it.next(); // next() 返回下一个元素
                             if (c.getGcNo().equals(returnList.get(i).get("GC_NO"))) {
+                                failList.add(c);
                                 it.remove(); // remove() 移除元素
                             }
                         }
@@ -51,10 +54,14 @@ public class BillmonthAction {
                     if(dataList.size() > 0) {
                         billmonthService.updateSuccessList(dataList);
                     }
-                    billmonthService.updateFailList(returnList);
+                    billmonthService.updateFailList(failList);
                 } else {
-                    System.out.println("推送失败，未更新任何数据！");
+                    billmonthService.updateFailList(dataList);
+                    System.out.println("{\"resCode\":\"" + jsonObject.getString("resCode") + "\",\"resMsg\":\"" + jsonObject.getString("resMsg") + "\",\"resTime\":\"" + jsonObject.getString("resTime") +"\"}");
                 }
+            }
+            else {
+                System.out.println("网络问题请求失败！");
             }
         }
     }
