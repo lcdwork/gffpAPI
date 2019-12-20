@@ -30,9 +30,9 @@ public class ElectricityhourAction {
     public void putElectricityhour() {
 
         List<Electricityhour> dataList = electricityhourService.findByWhere(null);
-        String jsonDataList = JSONObject.toJSONString(dataList);
 
         if(dataList.size()>0) {
+            String jsonDataList = JSONObject.toJSONString(dataList);
             String res = HandleTools.putData(url, dataList.size(), jsonDataList);
             if (res != null) {
                 JSONObject jsonObject = JSON.parseObject(res);

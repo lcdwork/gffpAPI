@@ -30,9 +30,9 @@ public class ElectricitydayAciton {
     public void putElectricityday() {
 
         List<Electricityday> dataList = electricitydayService.findByWhere(null);
-        String jsonDataList = JSONObject.toJSONString(dataList);
 
         if(dataList.size()>0) {
+            String jsonDataList = JSONObject.toJSONString(dataList);
             String res = HandleTools.putData(url, dataList.size(), jsonDataList);
             if (res != null) {
                 JSONObject jsonObject = JSON.parseObject(res);

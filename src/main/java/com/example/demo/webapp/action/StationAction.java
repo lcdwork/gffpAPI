@@ -30,9 +30,9 @@ public class StationAction {
     public void putStation() {
 
         List<Station> dataList = stationService.findByWhere(null);
-        String jsonDataList = JSONObject.toJSONString(dataList);
 
         if(dataList.size()>0) {
+            String jsonDataList = JSONObject.toJSONString(dataList);
             String res = HandleTools.putData(url, dataList.size(), jsonDataList);
             if (res != null) {
                 JSONObject jsonObject = JSON.parseObject(res);
