@@ -26,7 +26,7 @@ public class ElectricitydayAciton {
     @Value("${electricityday.url}")
     public String url;
 
-    @Scheduled(cron = "${electricityday.cron}")
+//    @Scheduled(cron = "${electricityday.cron}")
     public void putElectricityday() {
 
         List<Electricityday> dataList = electricitydayService.findByWhere(null);

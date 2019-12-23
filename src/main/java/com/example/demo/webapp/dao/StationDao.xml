@@ -3,7 +3,7 @@
 <mapper	namespace="com.example.demo.webapp.dao.StationDao">
 
     <sql id = "Base_Column_List">
-        GC_ID,GC_NO,VOLT_CODE,STATUS_CODE,ABSO_MODE,POVERTY_ALLEV_FLAG,CONTRACT_CAP,GC_DATE
+        GC_ID,GC_NO,VOLT_CODE,STATUS_CODE,ABSO_MODE,POVERTY_ALLEV_FLAG,CONTRACT_CAP,to_char(GC_DATE,'yyyy-mm-dd hh24:mi:ss') AS GC_DATE
 	</sql>
 
     <select id="findByWhere" parameterType="Station" resultType="Station" useCache="true">

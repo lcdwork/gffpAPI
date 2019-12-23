@@ -30,6 +30,7 @@ public class StationAction {
     public void putStation() {
 
         List<Station> dataList = stationService.findByWhere(null);
+        System.out.println(JSONObject.toJSONString(dataList));
 
         if(dataList.size()>0) {
             String jsonDataList = JSONObject.toJSONString(dataList);

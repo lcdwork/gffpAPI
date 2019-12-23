@@ -26,7 +26,7 @@ public class BillmonthAction {
     @Value("${billmonth.url}")
     public String url;
 
-    @Scheduled(cron = "${billmonth.cron}")
+//    @Scheduled(cron = "${billmonth.cron}")
     public void putMonthBill() {
 
         List<Billmonth> dataList = billmonthService.findByWhere(null);
