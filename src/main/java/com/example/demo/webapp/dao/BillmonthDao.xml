@@ -3,7 +3,7 @@
 <mapper	namespace="com.example.demo.webapp.dao.BillmonthDao">
 
     <sql id = "Base_Column_List">
-        PAY_INFO_ID,CALC_ID,AMT_SORT,PAY_YM,GC_NO,T_PUR_PQ,T_GRA_PQ,PAY_AMT,PAY_PUR_AMT,PAY_GRA_AMT,PAIED_PUR_AMT,
+        PAY_INFO_ID,CALC_ID,AMT_SORT,PAY_YM,GC_NO,ORG_NO,T_PUR_PQ,T_GRA_PQ,PAY_AMT,PAY_PUR_AMT,PAY_GRA_AMT,PAIED_PUR_AMT,
         PAIED_GRA_AMT,PUR_TAX_AMT,GRA_TAX_AMT,TAX_AMT,OWE_AMT,RELEASE_DATE,SETTLE_FLAG,PRINT_MARK,BATCH_ID,STATUS_CODE
 	</sql>
 
@@ -31,6 +31,9 @@
                 </if>
                 <if test="item.gcNo !=null">
                     and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.orgNo !=null">
+                    and ORG_NO = #{item.orgNo}
                 </if>
                 <if test="item.payYm !=null">
                     and PAY_YM = #{item.payYm}
@@ -66,6 +69,9 @@
                 </if>
                 <if test="item.gcNo !=null">
                     and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.orgNo !=null">
+                    and ORG_NO = #{item.orgNo}
                 </if>
                 <if test="item.payYm !=null">
                     and PAY_YM = #{item.payYm}

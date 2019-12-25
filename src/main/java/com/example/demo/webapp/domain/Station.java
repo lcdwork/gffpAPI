@@ -9,6 +9,8 @@ public class Station implements MybatisEntity {
     private String gcId; // 发电客户标识
     @JSONField(name = "GC_NO")
     private String gcNo; // 发电客户编号
+    @JSONField(name = "ORG_NO")
+    private String orgNo; // 发电客户实际所属发电公司  不为空  发电公司code值
     @JSONField(name = "VOLT_CODE")
     private String VoltCode; // 并网电压 不为空且必须是    220v 380v  3kV 6kV  10kV 20kV  35kV  其中一个    k小谢  V大写
     @JSONField(name = "STATUS_CODE")
@@ -84,5 +86,13 @@ public class Station implements MybatisEntity {
 
     public void setGcDate(String gcDate) {
         GcDate = gcDate;
+    }
+
+    public String getOrgNo() {
+        return orgNo;
+    }
+
+    public void setOrgNo(String orgNo) {
+        this.orgNo = orgNo;
     }
 }

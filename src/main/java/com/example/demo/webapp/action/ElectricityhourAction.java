@@ -26,7 +26,7 @@ public class ElectricityhourAction {
     @Value("${electricityhour.url}")
     public String url;
 
-//    @Scheduled(cron = "${electricityhour.cron}")
+    @Scheduled(cron = "${electricityhour.cron}")
     public void putElectricityhour() {
 
         List<Electricityhour> dataList = electricityhourService.findByWhere(null);

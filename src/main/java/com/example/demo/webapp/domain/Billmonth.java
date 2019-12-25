@@ -15,6 +15,8 @@ public class Billmonth implements MybatisEntity {
     private String payYm; // 应付年月   不为空 且必须是  yyyy-MM  格式
     @JSONField(name = "GC_NO")
     private String gcNo; // 发电客户编号   不为空
+    @JSONField(name = "ORG_NO")
+    private String orgNo; // 供电单位编号   不为空
     @JSONField(name = "T_PUR_PQ")
     private String tPurPq; // 总上网电量   不为空 两位内小数
     @JSONField(name = "T_GRA_PQ")
@@ -28,7 +30,7 @@ public class Billmonth implements MybatisEntity {
     @JSONField(name = "PAIED_PUR_AMT")
     private String paiedPurAmt; // 实付购电款金额   不为空 两位内小数
     @JSONField(name = "PAIED_GRA_AMT")
-    private String paredGraAmt; // 实付补助款金额   不为空 两位内小数
+    private String paiedGraAmt; // 实付补助款金额   不为空 两位内小数
     @JSONField(name = "PUR_TAX_AMT")
     private String purTaxAmt; // 上网购电款税额   不为空 两位内小数
     @JSONField(name = "GRA_TAX_AMT")
@@ -88,6 +90,14 @@ public class Billmonth implements MybatisEntity {
         this.gcNo = gcNo;
     }
 
+    public String getOrgNo() {
+        return orgNo;
+    }
+
+    public void setOrgNo(String orgNo) {
+        this.orgNo = orgNo;
+    }
+
     public String gettPurPq() {
         return tPurPq;
     }
@@ -136,12 +146,12 @@ public class Billmonth implements MybatisEntity {
         this.paiedPurAmt = paiedPurAmt;
     }
 
-    public String getParedGraAmt() {
-        return paredGraAmt;
+    public String getPaiedGraAmt() {
+        return paiedGraAmt;
     }
 
-    public void setParedGraAmt(String paredGraAmt) {
-        this.paredGraAmt = paredGraAmt;
+    public void setPaiedGraAmt(String paiedGraAmt) {
+        this.paiedGraAmt = paiedGraAmt;
     }
 
     public String getPurTaxAmt() {

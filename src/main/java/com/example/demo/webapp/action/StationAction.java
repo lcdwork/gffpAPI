@@ -26,7 +26,7 @@ public class StationAction {
     @Value("${station.url}")
     public String url;
 
-    @Scheduled(cron = "${station.cron}")
+//    @Scheduled(cron = "${station.cron}")
     public void putStation() {
 
         List<Station> dataList = stationService.findByWhere(null);
