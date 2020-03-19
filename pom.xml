@@ -66,14 +66,14 @@
 <!--            <groupId>com.collect.monitor.utils</groupId>-->
 <!--            <artifactId>DESUtils</artifactId>-->
 <!--            <scope>system</scope>-->
-<!--            <systemPath>${project.basedir}/lib/DESUtils.jar</systemPath>-->
+<!--            <systemPath>${pom.basedir}/lib/DESUtils.jar</systemPath>-->
 <!--        </dependency>-->
 <!--        <dependency>-->
 <!--            <groupId>com.collect.monitor.utils</groupId>-->
 <!--            <artifactId>MD5Utils</artifactId>-->
 <!--            <scope>system</scope>-->
 <!--            <version>1.0</version>-->
-<!--            <systemPath>${project.basedir}/lib/MD5Utils.jar</systemPath>-->
+<!--            <systemPath>${pom.basedir}/lib/MD5Utils.jar</systemPath>-->
 <!--        </dependency>-->
     </dependencies>
 
