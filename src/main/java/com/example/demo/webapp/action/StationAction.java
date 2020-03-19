@@ -26,10 +26,11 @@ public class StationAction {
     @Value("${station.url}")
     public String url;
 
-    @Scheduled(cron = "${station.cron}")
+//    @Scheduled(cron = "${station.cron}")
     public void putStation() {
 
         List<Station> dataList = stationService.findByWhere(null);
+        System.out.println(JSONObject.toJSONString(dataList));
 
         if(dataList.size()>0) {
             String jsonDataList = JSONObject.toJSONString(dataList);

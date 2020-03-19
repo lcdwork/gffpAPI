@@ -5,6 +5,8 @@ import com.riozenc.titanTool.mybatis.MybatisEntity;
 
 // 光伏小时发电功率信息（日）
 public class Electricityhour implements MybatisEntity {
+    @JSONField(name = "ID")
+    private String id; // 流水号    不为空
     @JSONField(name = "PROVINCE_CODE")
     private String provinceCode; // 网省编号    不为空
     @JSONField(name = "DATA_DATE")
@@ -65,6 +67,14 @@ public class Electricityhour implements MybatisEntity {
     private String p23; // 不为空
     @JSONField(name = "P24")
     private String p24; // 不为空
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getProvinceCode() {
         return provinceCode;

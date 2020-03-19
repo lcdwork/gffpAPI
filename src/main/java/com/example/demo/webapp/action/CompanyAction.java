@@ -26,7 +26,7 @@ public class CompanyAction {
     @Value("${company.url}")
     public String url;
 
-    @Scheduled(cron = "${company.cron}")
+//    @Scheduled(cron = "${company.cron}")
     public void putCompany() {
 
         List<Company> dataList = companyService.findByWhere(null);
