@@ -26,7 +26,7 @@ public class AddrAction {
     @Value("${addr.url}")
     public String url;
 
-//    @Scheduled(cron = "${addr.cron}")
+    @Scheduled(cron = "${addr.cron}")
     public void putAddr() {
 
         List<Addr> dataList = addrService.findByWhere(null);

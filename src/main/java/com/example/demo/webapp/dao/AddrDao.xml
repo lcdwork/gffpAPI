@@ -6,7 +6,7 @@
         GCA_ID,GC_NO,PROVINCE_NAME,CITY_NAME,COUNTY_NAME,STREET_NAME,VILLAGE_NAME,POS_X,POS_Y,POS_Z
     </sql>
 
-    <select id="findByWhere" parameterType="Addr" resultType="Addr" useCache="true">
+    <select id="findByWhere" parameterType="com.example.demo.webapp.domain.Addr" resultType="com.example.demo.webapp.domain.Addr" useCache="true">
         select
         <include refid="Base_Column_List" />
         from GF_ADDR

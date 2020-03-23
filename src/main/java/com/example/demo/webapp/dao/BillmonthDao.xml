@@ -7,7 +7,7 @@
         PAIED_GRA_AMT,PUR_TAX_AMT,GRA_TAX_AMT,TAX_AMT,OWE_AMT,RELEASE_DATE,SETTLE_FLAG,PRINT_MARK,BATCH_ID,STATUS_CODE
 	</sql>
 
-    <select id="findByWhere" parameterType="Billmonth" resultType="Billmonth" useCache="true">
+    <select id="findByWhere" parameterType="com.example.demo.webapp.domain.Billmonth" resultType="com.example.demo.webapp.domain.Billmonth" useCache="true">
         select
         <include refid="Base_Column_List" />
         from GF_BILLMONTH

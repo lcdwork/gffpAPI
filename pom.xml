@@ -62,19 +62,20 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
         </dependency>
-        <!--        <dependency>-->
-<!--            <groupId>com.collect.monitor.utils</groupId>-->
-<!--            <artifactId>DESUtils</artifactId>-->
-<!--            <scope>system</scope>-->
-<!--            <systemPath>${pom.basedir}/lib/DESUtils.jar</systemPath>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.collect.monitor.utils</groupId>-->
-<!--            <artifactId>MD5Utils</artifactId>-->
-<!--            <scope>system</scope>-->
-<!--            <version>1.0</version>-->
-<!--            <systemPath>${pom.basedir}/lib/MD5Utils.jar</systemPath>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.collect.monitor.utils</groupId>
+            <artifactId>DESUtils</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${pom.basedir}/lib/DESUtils.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.collect.monitor.utils</groupId>
+            <artifactId>MD5Utils</artifactId>
+            <scope>system</scope>
+            <version>1.0</version>
+            <systemPath>${pom.basedir}/lib/MD5Utils.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>

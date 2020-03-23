@@ -6,7 +6,7 @@
         PROVINCE_CODE,ENERGY_DATE,GC_NO,PUR_PQ,GRA_PQ
 	</sql>
 
-    <select id="findByWhere" parameterType="Electricityday" resultType="Electricityday" useCache="true">
+    <select id="findByWhere" parameterType="com.example.demo.webapp.domain.Electricityday" resultType="com.example.demo.webapp.domain.Electricityday" useCache="true">
         select
         <include refid="Base_Column_List" />
         from GF_ELECTRICITYDAY

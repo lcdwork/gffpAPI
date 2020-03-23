@@ -7,7 +7,7 @@
         P13,P14,P15,P16,P17,P18,P19,P20,P21,P22,P23,P24
 	</sql>
 
-    <select id="findByWhere" parameterType="Electricityhour" resultType="Electricityhour" useCache="true">
+    <select id="findByWhere" parameterType="com.example.demo.webapp.domain.Electricityhour" resultType="com.example.demo.webapp.domain.Electricityhour" useCache="true">
         select
         <include refid="Base_Column_List" />
         from GF_ELECTRICITYHOUR

@@ -6,7 +6,7 @@
         ORG_NO,ORG_NAME,P_ORG_NO,ORG_TYPE,SORT_NO,ORG_PROPERTY,ORG_SHORTHAND
 	</sql>
 
-    <select id="findByWhere" parameterType="Company" resultType="Company" useCache="true">
+    <select id="findByWhere" parameterType="com.example.demo.webapp.domain.Company" resultType="com.example.demo.webapp.domain.Company" useCache="true">
         select
         <include refid="Base_Column_List" />
         from GF_COMPANY

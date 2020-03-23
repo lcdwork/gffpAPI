@@ -3,7 +3,7 @@
  *    Date:2019年3月11日 下午7:45:53
  *    Title:com.riozenc.cim.web.config.DatasourcesConfig.java
  **/
-package com.example.demo.support.transaction;
+package com.example.demo.transaction;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
