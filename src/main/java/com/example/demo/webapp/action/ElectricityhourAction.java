@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demo.tools.HandleTools;
 import com.example.demo.webapp.domain.Electricityhour;
 import com.example.demo.webapp.service.IElectricityhourService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +30,7 @@ public class ElectricityhourAction {
 
     @Scheduled(cron = "${electricityhour.cron}")
     public void putElectricityhour() {
+        Logger logger = LoggerFactory.getLogger(this.getClass());
 
         List<Electricityhour> dataList = electricityhourService.findByWhere(null);
 
@@ -57,11 +60,11 @@ public class ElectricityhourAction {
                     electricityhourService.updateFailList(failList);
                 } else {
                     electricityhourService.updateFailList(dataList);
-                    System.out.println("{\"resCode\":\"" + jsonObject.getString("resCode") + "\",\"resMsg\":\"" + jsonObject.getString("resMsg") + "\",\"resTime\":\"" + jsonObject.getString("resTime") +"\"}");
+                    logger.error("{\"resCode\":\"" + jsonObject.getString("resCode") + "\",\"resMsg\":\"" + jsonObject.getString("resMsg") + "\",\"resTime\":\"" + jsonObject.getString("resTime") +"\"}");
                 }
             }
             else {
-                System.out.println("网络问题请求失败！");
+                logger.error("网络问题请求失败！");
             }
         }
     }

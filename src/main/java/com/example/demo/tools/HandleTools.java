@@ -6,18 +6,19 @@ public class HandleTools {
     public static String putData(String url, int size, String jsonDataList){
         String token = HttpTools.getToken();
         if(token != null) {
-            System.out.println(token);
+//            System.out.println(token);
             // DATA数据
             Data data =new Data();
             data.setToken(token);
             data.setDataCount(size);
             data.setDataList(jsonDataList);
             String res = HttpTools.postData(url, data);
-            System.out.println(res);
+//            System.out.println(res);
             if(res != null) {
                 return res;
             }
         }
+
         return null;
     }
 }

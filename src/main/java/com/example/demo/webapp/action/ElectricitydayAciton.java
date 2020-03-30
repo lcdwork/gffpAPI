@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demo.tools.HandleTools;
 import com.example.demo.webapp.domain.Electricityday;
 import com.example.demo.webapp.service.IElectricitydayService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,8 +28,9 @@ public class ElectricitydayAciton {
     @Value("${electricityday.url}")
     public String url;
 
-//    @Scheduled(cron = "${electricityday.cron}")
+    @Scheduled(cron = "${electricityday.cron}")
     public void putElectricityday() {
+        Logger logger = LoggerFactory.getLogger(this.getClass());
 
         List<Electricityday> dataList = electricitydayService.findByWhere(null);
 
@@ -57,11 +60,11 @@ public class ElectricitydayAciton {
                     electricitydayService.updateFailList(failList);
                 } else {
                     electricitydayService.updateFailList(dataList);
-                    System.out.println("{\"resCode\":\"" + jsonObject.getString("resCode") + "\",\"resMsg\":\"" + jsonObject.getString("resMsg") + "\",\"resTime\":\"" + jsonObject.getString("resTime") +"\"}");
+                    logger.error("{\"resCode\":\"" + jsonObject.getString("resCode") + "\",\"resMsg\":\"" + jsonObject.getString("resMsg") + "\",\"resTime\":\"" + jsonObject.getString("resTime") +"\"}");
                 }
             }
             else {
-                System.out.println("网络问题请求失败！");
+                logger.error("网络问题请求失败！");
             }
         }
     }

@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demo.tools.HandleTools;
 import com.example.demo.webapp.domain.Station;
 import com.example.demo.webapp.service.IStationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,11 +28,11 @@ public class StationAction {
     @Value("${station.url}")
     public String url;
 
-//    @Scheduled(cron = "${station.cron}")
+    @Scheduled(cron = "${station.cron}")
     public void putStation() {
+        Logger logger = LoggerFactory.getLogger(this.getClass());
 
         List<Station> dataList = stationService.findByWhere(null);
-        System.out.println(JSONObject.toJSONString(dataList));
 
         if(dataList.size()>0) {
             String jsonDataList = JSONObject.toJSONString(dataList);
@@ -58,11 +60,11 @@ public class StationAction {
                     stationService.updateFailList(failList);
                 } else {
                     stationService.updateFailList(dataList);
-                    System.out.println("{\"resCode\":\"" + jsonObject.getString("resCode") + "\",\"resMsg\":\"" + jsonObject.getString("resMsg") + "\",\"resTime\":\"" + jsonObject.getString("resTime") +"\"}");
+                    logger.error("{\"resCode\":\"" + jsonObject.getString("resCode") + "\",\"resMsg\":\"" + jsonObject.getString("resMsg") + "\",\"resTime\":\"" + jsonObject.getString("resTime") +"\"}");
                 }
             }
             else {
-                System.out.println("网络问题请求失败！");
+                logger.error("网络问题请求失败！");
             }
         }
     }

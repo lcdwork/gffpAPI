@@ -5,6 +5,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.demo.tools.HandleTools;
 import com.example.demo.webapp.domain.Company;
 import com.example.demo.webapp.service.ICompanyService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,8 +28,9 @@ public class CompanyAction {
     @Value("${company.url}")
     public String url;
 
-//    @Scheduled(cron = "${company.cron}")
+    @Scheduled(cron = "${company.cron}")
     public void putCompany() {
+        Logger logger = LoggerFactory.getLogger(this.getClass());
 
         List<Company> dataList = companyService.findByWhere(null);
 
@@ -57,11 +60,11 @@ public class CompanyAction {
                     companyService.updateFailList(failList);
                 } else {
                     companyService.updateFailList(dataList);
-                    System.out.println("{\"resCode\":\"" + jsonObject.getString("resCode") + "\",\"resMsg\":\"" + jsonObject.getString("resMsg") + "\",\"resTime\":\"" + jsonObject.getString("resTime") +"\"}");
+                    logger.error("{\"resCode\":\"" + jsonObject.getString("resCode") + "\",\"resMsg\":\"" + jsonObject.getString("resMsg") + "\",\"resTime\":\"" + jsonObject.getString("resTime") +"\"}");
                 }
             }
             else {
-                System.out.println("网络问题请求失败！");
+                logger.error("网络问题请求失败！");
             }
         }
     }

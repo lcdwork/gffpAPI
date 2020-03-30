@@ -31,7 +31,7 @@ public class HttpTools {
 
         String encryptDataStr = DESUtils.encrypt(JSONObject.toJSONString(data), ConfigurationProperties.secretKey);
         String decryptDateStr = DESUtils.decrypt(encryptDataStr, ConfigurationProperties.secretKey);
-        System.out.println(decryptDateStr);
+//        System.out.println(decryptDateStr);
 
         base.setData(encryptDataStr);
         StringBuilder sb = new StringBuilder();
