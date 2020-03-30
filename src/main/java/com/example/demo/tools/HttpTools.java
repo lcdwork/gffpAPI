@@ -7,6 +7,8 @@ import com.example.demo.configurationFile.ConfigurationProperties;
 import com.example.demo.webapp.domain.Base;
 import com.example.demo.webapp.domain.Data;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -17,10 +19,11 @@ import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 
 public class HttpTools {
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     // 推送数据方法
     @Retryable
-    public static String postData(String url, Data data) {
+    public String postData(String url, Data data) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -48,6 +51,7 @@ public class HttpTools {
             // ResponseEntity<Map> response = restTemplate.postForEntity( url, request , Map.class );
              return response.getBody();
         } catch (Exception e) {
+            logger.error(e.toString());
             e.printStackTrace();
 //            return e.toString();
             return null;
@@ -55,7 +59,7 @@ public class HttpTools {
     }
     // 获取token方法
     @Retryable
-    public static String getToken() {
+    public String getToken() {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -88,6 +92,7 @@ public class HttpTools {
             // return response.getBody();
         } catch (Exception e) {
             e.printStackTrace();
+            logger.error(e.toString());
             // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             // String res = "{\"resCode\":\"抛出异常\",\"resMsg\":" + e.toString() + ",\"resTime\":"+sdf.format(System.currentTimeMillis())+"}";
             return null;
