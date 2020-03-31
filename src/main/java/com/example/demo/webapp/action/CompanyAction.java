@@ -35,6 +35,7 @@ public class CompanyAction {
         List<Company> dataList = companyService.findByWhere(null);
 
         if(dataList.size()>0) {
+//            System.out.println("company触发");
             String jsonDataList = JSONObject.toJSONString(dataList);
             String res = HandleTools.putData(url, dataList.size(), jsonDataList);
             if (res != null) {

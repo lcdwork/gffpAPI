@@ -35,6 +35,7 @@ public class ElectricitydayAciton {
         List<Electricityday> dataList = electricitydayService.findByWhere(null);
 
         if(dataList.size()>0) {
+//            System.out.println("electricityday触发");
             String jsonDataList = JSONObject.toJSONString(dataList);
             String res = HandleTools.putData(url, dataList.size(), jsonDataList);
             if (res != null) {

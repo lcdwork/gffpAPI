@@ -35,6 +35,7 @@ public class AddrAction {
         List<Addr> dataList = addrService.findByWhere(null);
 
         if(dataList.size()>0) {
+//            System.out.println("addr触发");
             String jsonDataList = JSONObject.toJSONString(dataList);
             String res = HandleTools.putData(url, dataList.size(), jsonDataList);
             if (res != null) {

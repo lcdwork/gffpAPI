@@ -35,6 +35,7 @@ public class StationAction {
         List<Station> dataList = stationService.findByWhere(null);
 
         if(dataList.size()>0) {
+//            System.out.println("station触发");
             String jsonDataList = JSONObject.toJSONString(dataList);
             String res = HandleTools.putData(url, dataList.size(), jsonDataList);
             if (res != null) {
