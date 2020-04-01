@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="com.jlsd.gffp.webapp.dao.BillmonthDao">
+
+    <sql id = "Base_Column_List">
+        PAY_INFO_ID,CALC_ID,AMT_SORT,PAY_YM,GC_NO,ORG_NO,T_PUR_PQ,T_GRA_PQ,PAY_AMT,PAY_PUR_AMT,PAY_GRA_AMT,PAIED_PUR_AMT,
+        PAIED_GRA_AMT,PUR_TAX_AMT,GRA_TAX_AMT,TAX_AMT,OWE_AMT,RELEASE_DATE,SETTLE_FLAG,PRINT_MARK,BATCH_ID,STATUS_CODE
+	</sql>
+
+    <select id="findByWhere" parameterType="com.jlsd.gffp.webapp.domain.Billmonth" resultType="com.jlsd.gffp.webapp.domain.Billmonth" useCache="true">
+        select
+        <include refid="Base_Column_List" />
+        from GF_BILLMONTH
+        <where>
+            STATUS = 0 AND SEND_FLAG  &lt; 3
+        </where>
+    </select>
+
+    <update id="updateSuccessList" parameterType="java.util.List" flushCache="true">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            UPDATE GF_BILLMONTH
+            <set>
+                STATUS = 1
+            </set>
+            <where>
+                <if test="item.payInfoId !=null">
+                    and PAY_INFO_ID = #{item.payInfoId}
+                </if>
+                <if test="item.calcId !=null">
+                    and CALC_ID = #{item.calcId}
+                </if>
+                <if test="item.gcNo !=null">
+                    and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.orgNo !=null">
+                    and ORG_NO = #{item.orgNo}
+                </if>
+                <if test="item.payYm !=null">
+                    and PAY_YM = #{item.payYm}
+                </if>
+                <if test="item.releaseDate !=null">
+                    and RELEASE_DATE = #{item.releaseDate}
+                </if>
+                <if test="item.tPurPq !=null">
+                    and T_PUR_PQ = #{item.tPurPq}
+                </if>
+                <if test="item.tGraPq !=null">
+                    and T_GRA_PQ = #{item.tGraPq}
+                </if>
+                <if test="item.payAmt !=null">
+                    and PAY_AMT = #{item.payAmt}
+                </if>
+            </where>
+        </foreach>
+    </update>
+
+    <update id="updateFailList" parameterType="java.util.List" flushCache="true">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            UPDATE GF_BILLMONTH
+            <set>
+                STATUS = 0, SEND_FLAG = SEND_FLAG + 1
+            </set>
+            <where>
+                <if test="item.payInfoId !=null">
+                    and PAY_INFO_ID = #{item.payInfoId}
+                </if>
+                <if test="item.calcId !=null">
+                    and CALC_ID = #{item.calcId}
+                </if>
+                <if test="item.gcNo !=null">
+                    and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.orgNo !=null">
+                    and ORG_NO = #{item.orgNo}
+                </if>
+                <if test="item.payYm !=null">
+                    and PAY_YM = #{item.payYm}
+                </if>
+                <if test="item.releaseDate !=null">
+                    and RELEASE_DATE = #{item.releaseDate}
+                </if>
+                <if test="item.tPurPq !=null">
+                    and T_PUR_PQ = #{item.tPurPq}
+                </if>
+                <if test="item.tGraPq !=null">
+                    and T_GRA_PQ = #{item.tGraPq}
+                </if>
+                <if test="item.payAmt !=null">
+                    and PAY_AMT = #{item.payAmt}
+                </if>
+            </where>
+        </foreach>
+    </update>
+
+</mapper>

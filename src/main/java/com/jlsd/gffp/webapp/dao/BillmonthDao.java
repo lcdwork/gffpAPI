@@ -1,0 +1,26 @@
+package com.jlsd.gffp.webapp.dao;
+
+import com.jlsd.gffp.webapp.domain.Billmonth;
+import com.riozenc.titanTool.annotation.TransactionDAO;
+import com.riozenc.titanTool.spring.webapp.dao.AbstractTransactionDAOSupport;
+
+import java.util.List;
+
+@TransactionDAO
+public class BillmonthDao extends AbstractTransactionDAOSupport {
+
+    public List<Billmonth> findByWhere(Billmonth t) {
+        // TODO Auto-generated method stub
+        return getPersistanceManager().find(getNamespace() + ".findByWhere", t);
+    }
+
+    public int updateSuccessList(List<Billmonth> list) {
+        // TODO Auto-generated method stub
+        return getPersistanceManager().update(getNamespace() + ".updateSuccessList", list);
+    }
+
+    public int updateFailList(List<Billmonth> list) {
+        // TODO Auto-generated method stub
+        return getPersistanceManager().update(getNamespace() + ".updateFailList", list);
+    }
+}

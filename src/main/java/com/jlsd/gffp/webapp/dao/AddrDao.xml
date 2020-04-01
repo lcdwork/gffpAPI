@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper	namespace="com.jlsd.gffp.webapp.dao.AddrDao">
+
+    <sql id = "Base_Column_List">
+        GCA_ID,GC_NO,PROVINCE_NAME,CITY_NAME,COUNTY_NAME,STREET_NAME,VILLAGE_NAME,POS_X,POS_Y,POS_Z
+    </sql>
+
+    <select id="findByWhere" parameterType="com.jlsd.gffp.webapp.domain.Addr" resultType="com.jlsd.gffp.webapp.domain.Addr" useCache="true">
+        select
+        <include refid="Base_Column_List" />
+        from GF_ADDR
+        <where>
+            STATUS = 0 AND SEND_FLAG  &lt; 3
+        </where>
+    </select>
+
+    <update id="updateSuccessList" parameterType="java.util.List" flushCache="true">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            UPDATE GF_ADDR
+            <set>
+                STATUS = 1
+            </set>
+            <where>
+                <if test="item.gcaId !=null">
+                    and GCA_ID = #{item.gcaId}
+                </if>
+                <if test="item.gcNo !=null">
+                    and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.provinceName !=null">
+                    and PROVINCE_NAME = #{item.provinceName}
+                </if>
+                <if test="item.cityName !=null">
+                    and CITY_NAME = #{item.cityName}
+                </if>
+                <if test="item.countyName !=null">
+                    and COUNTY_NAME = #{item.countyName}
+                </if>
+                <if test="item.streetName !=null">
+                    and STREET_NAME = #{item.streetName}
+                </if>
+                <if test="item.villageName !=null">
+                    and VILLAGE_NAME = #{item.villageName}
+                </if>
+            </where>
+        </foreach>
+    </update>
+
+    <update id="updateFailList" parameterType="java.util.List" flushCache="true">
+        <foreach collection="list" item="item" index="index" open="begin" close=";end;" separator=";">
+            UPDATE GF_ADDR
+            <set>
+                STATUS = 0, SEND_FLAG = SEND_FLAG + 1
+            </set>
+            <where>
+                <if test="item.gcaId !=null">
+                    and GCA_ID = #{item.gcaId}
+                </if>
+                <if test="item.gcNo !=null">
+                    and GC_NO = #{item.gcNo}
+                </if>
+                <if test="item.provinceName !=null">
+                    and PROVINCE_NAME = #{item.provinceName}
+                </if>
+                <if test="item.cityName !=null">
+                    and CITY_NAME = #{item.cityName}
+                </if>
+                <if test="item.countyName !=null">
+                    and COUNTY_NAME = #{item.countyName}
+                </if>
+                <if test="item.streetName !=null">
+                    and STREET_NAME = #{item.streetName}
+                </if>
+                <if test="item.villageName !=null">
+                    and VILLAGE_NAME = #{item.villageName}
+                </if>
+            </where>
+        </foreach>
+    </update>
+
+</mapper>
