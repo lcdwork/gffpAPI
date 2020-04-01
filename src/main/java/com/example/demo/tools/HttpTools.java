@@ -48,6 +48,7 @@ public class HttpTools {
         try {
              HttpEntity<String> request = new HttpEntity<>(json, headers);
              ResponseEntity<String> response = restTemplate.postForEntity( url, request , String.class );
+             logger.info(response.getBody());
             // ResponseEntity<Map> response = restTemplate.postForEntity( url, request , Map.class );
              return response.getBody();
         } catch (Exception e) {
